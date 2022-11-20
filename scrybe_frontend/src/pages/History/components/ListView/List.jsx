@@ -2,7 +2,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from "react";
 import styles from "./list.module.scss";
-import image from "../../assets/callImage.png";
+import image from "../../icons/callImage.png";
 
 function List(props) {
   return (

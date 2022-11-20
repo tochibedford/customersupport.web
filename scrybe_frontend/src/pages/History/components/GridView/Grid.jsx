@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React from "react";
-import CallImage from "../../assets/callImage.png";
+import CallImage from "../../icons/callImage.png";
 import styles from "./grid.module.scss";
 
 function Grid(props) {
