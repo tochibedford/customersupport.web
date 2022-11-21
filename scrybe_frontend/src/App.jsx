@@ -11,7 +11,7 @@ import TermsAndCondition from "./pages/TermsAndCondition/TermsOfService";
 import Services from "./pages/services-page/Services";
 import Solutions from "./pages/solutions-page/Solutions";
 import DashboardOverview from "./pages/DashboardOverview";
-import About from "./pages/AboutUs/About";
+import About from "./pages/AboutUs";
 
 function App() {
   return (
