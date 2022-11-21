@@ -20,14 +20,14 @@ import Payments from "./Components/Payments.jsx";
 import NavBar from "../../components/navBar/index.jsx";
 import Footer from "../../components/footer/index.jsx";
 
-import "./Style/privacyPolicy.scss";
+import style from  "./Style/privacyPolicy.module.scss";
 
 function PrivacyPolicy() {
   return (
     <div>
       <NavBar />
-    <div className="container">
-      <div className="heading">
+    <div className={style.container}>
+      <div className={style.heading}>
         <h1>PRIVACY POLICY</h1>
         <p>Effective date: 22-11-16</p>
       </div>

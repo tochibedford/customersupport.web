@@ -1,6 +1,7 @@
+import style from "../Style/privacyPolicy.module.scss"
 function LawfulBasis() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>11. Lawful Basis For Processing Personal Data</h1>
       <p>
         We will only use your Personal Data if we have a proper reason for doing

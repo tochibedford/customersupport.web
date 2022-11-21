@@ -1,6 +1,7 @@
+import style from "../Style/privacyPolicy.module.scss"
 function RetentionOfData() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>6. Retention of Data</h1>
       <p>
         We will retain your Personal Data only for as long as is necessary for

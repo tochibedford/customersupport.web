@@ -1,8 +1,9 @@
 import React from "react";
+import style from "../Style/privacyPolicy.module.scss"
 
 function Definitions() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>2. Definitions</h1>
       <p>
         <span>SERVICE</span> means the scrybe.com.ng website operated by Scrybe.

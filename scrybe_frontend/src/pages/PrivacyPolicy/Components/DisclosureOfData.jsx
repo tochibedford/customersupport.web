@@ -1,8 +1,9 @@
 import React from "react";
+import style from "../Style/privacyPolicy.module.scss"
 
 function DisclosureOfData() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>8. Disclosure of Data</h1>
       <p>
         We may disclose personal information that we collect, or you provide

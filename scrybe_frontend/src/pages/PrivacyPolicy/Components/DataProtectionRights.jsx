@@ -1,8 +1,9 @@
 import React from "react";
+import style from "../Style/privacyPolicy.module.scss"
 
 function DataProtectionRights() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>
         12. Your Data Protection Rights under the Nigerian Data Protection
         Regulation (NDPR)

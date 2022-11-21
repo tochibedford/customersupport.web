@@ -1,6 +1,7 @@
+import style from "../Style/privacyPolicy.module.scss"
 function SecurityOfData() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>9. Security of Data</h1>
       <p>
         The security of your data is important to us but remember that no method

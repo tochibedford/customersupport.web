@@ -1,6 +1,7 @@
+import style from "../Style/privacyPolicy.module.scss"
 function YourRights() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>10. Your rights</h1>
       <p>
         The Nigeria Data Protection Regulation (NDPR) 2019 gives you certain

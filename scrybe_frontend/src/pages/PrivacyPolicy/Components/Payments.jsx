@@ -1,4 +1,5 @@
 import React from "react";
+import style from "../Style/privacyPolicy.module.scss"
 
 function Payments() {
   return (

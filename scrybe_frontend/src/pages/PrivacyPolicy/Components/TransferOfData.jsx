@@ -1,6 +1,7 @@
+import style from "../Style/privacyPolicy.module.scss"
 function TransferOfData() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>7. Transfer of Data</h1>
       <p>
         Your information, including Personal Data, may be transferred to – and

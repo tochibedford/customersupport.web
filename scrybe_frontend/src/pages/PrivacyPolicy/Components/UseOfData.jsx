@@ -1,6 +1,7 @@
+import style from "../Style/privacyPolicy.module.scss"
 function UseOfData() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>5. Use of Data</h1>
       <p>Scrybe uses the collected data for various purposes:</p>
       <ol>

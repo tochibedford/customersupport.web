@@ -1,8 +1,9 @@
 import React from "react";
+import style from "../Style/privacyPolicy.module.scss"
 
 function Changes() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>18. Changes to This Privacy Policy</h1>
       <p>
         We may update our Privacy Policy from time to time. We will notify you

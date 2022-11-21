@@ -1,8 +1,8 @@
 import React from "react";
-
+import style from "../Style/privacyPolicy.module.scss"
 function ServiceProviders() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>13. Service Providers</h1>
       <p>
         We may employ third party companies and individuals to facilitate our

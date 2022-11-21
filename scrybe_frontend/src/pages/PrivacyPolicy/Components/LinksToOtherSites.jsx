@@ -1,8 +1,9 @@
 import React from "react";
+import style from "../Style/privacyPolicy.module.scss"
 
 function LinksToOtherSites() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>17. Links to Other Sites</h1>
       <p>
         Our Service may contain links to other sites that are not operated by

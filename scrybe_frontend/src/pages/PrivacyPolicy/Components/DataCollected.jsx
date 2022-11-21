@@ -1,8 +1,9 @@
 import React from "react";
+import style from "../Style/privacyPolicy.module.scss"
 
 function DataCollected() {
   return (
-    <div className="sub-container">
+    <div className={style.sub_container}>
       <h1>4. Types of Data Collected</h1>
       <div>
         <h1>Personal Data</h1>

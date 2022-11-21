@@ -1,6 +1,7 @@
+import style from "../Style/privacyPolicy.module.scss"
 function Introduction() {
   return (
-    <div className='sub-container'>
+    <div className={style.sub_container}>
         <h1>1. Introduction</h1>
         <p>Welcome to <span>Scrybe</span></p>
         <p>Our Privacy Policy governs your visit to <span> scrybe.com.ng</span>, and explains how we collect, safeguard and disclose information that results from your use of our Service.</p>
