@@ -1,8 +1,16 @@
 .header {
   font-size: 18px;
   background-color: #ffffff;
+  border-radius: 1rem;
 }
 
 .table {
   width: 100%;
+  margin: auto;
+  padding: 1rem 0 1rem 4rem;
+}
+
+.table__head {
+  text-align: left;
+  width: 15rem;
 }

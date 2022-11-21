@@ -5,25 +5,13 @@ $primary-color: #ffffff;
   align-items: center;
 }
 
-.table {
-  width: 100%;
-  margin: 1rem 0;
-}
-
-.table__row {
-  padding: 0.5rem;
-}
-
-.listbox {
-  background-color: $primary-color;
-}
-
-.record__list {
-  display: flex;
-}
-
 .name, .table__data_agent, .date, .analysis, .lenght {
-  width: 15rem;
+  width: 20rem;
+  padding: 1rem;
+}
+
+.list__container {
+  padding: 0.5rem 0.5rem;
 }
 
 .positiveColor {
@@ -54,4 +42,8 @@ $primary-color: #ffffff;
 
 .image {
   width: 1.5rem;
+}
+
+.checkbox {
+  width: 2rem;
 }

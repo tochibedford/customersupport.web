@@ -1,0 +1,45 @@
+@mixin select {
+    width: 8rem;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border-radius: 4px;
+  }
+  
+  .history__nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  
+    #{&}2 {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+  
+  .select {
+    @include select;
+  }
+  .option__grid, .option__list {
+    @include select;
+    background-repeat: no-repeat;
+    background-position: 10% 50%;
+    margin-right: 1rem;
+    border: 1px solid;
+    cursor: pointer;
+  }
+
+  .option__grid {
+    background-image: url("../../icons/Icon.png");
+  }
+  
+  .option__list {
+    background-image: url("../../icons/list\ Icon.png");
+  }
+
+.record {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  

@@ -24,25 +24,28 @@ $negative-color: #dbeab8;
 }
 
 .paragraph {
-  font-size: 12px;
+  font-size: 12px !important;
 }
 
 .positiveColor {
   background-color: #FFC2CB;
   padding: 0.1rem 0.9rem;
   border-radius: 4px;
+  font-size: 14px !important;
 }
 
 .negativeColor {
   background-color:#DBEAB8;
   padding: 0.1rem 0.9rem;
   border-radius: 4px;
+  font-size: 14px !important;
 }
 
 .neutralColor {
   background-color: #ECECEC;
   padding: 0.1rem 0.9rem;
   border-radius: 4px;
+  font-size: 14px !important;
 }
 
 .analysis {

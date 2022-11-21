@@ -1,24 +1,30 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React from "react";
 import styles from "./filter.module.scss";
+import data from "../../HistoryData";
+import Grid from "../GridView/Grid";
+import ListHeader from "../ListHeader/ListHeader";
 
 function Filter(props) {
-  if (!props.show) {
-    return null;
-  }
+  const recordGrid = data.map((item) => (
+    <Grid
+      name={item.name}
+      agent={item.agent}
+      analysis={item.analysis}
+      date={item.date}
+    />
+  ));
 
   return (
-    <div>
-      <h1>Record History</h1>
+    <div className={styles.history}>
+      <h1>Analysis History</h1>
       <div className={styles.history__nav}>
         <div>
-          <select className={styles.select__grid} name="Grid" id="">
-            <option onClick={props.onClose} value="Grid">
-              Grid
-            </option>
-            <option value="List">List</option>
-          </select>
+          <button onClick={props.grid} className={styles.option__grid}>
+            Grid
+          </button>
+          <button onClick={props.list} className={styles.option__list}>
+            List
+          </button>
         </div>
         <div className={styles.history__nav2}>
           <select className={styles.select} name="filter" id="">
@@ -30,6 +36,9 @@ function Filter(props) {
         </div>
       </div>
       <hr />
+      <div className={styles.record}>
+        {!props.show ? <ListHeader /> : recordGrid}
+      </div>
     </div>
   );
 }

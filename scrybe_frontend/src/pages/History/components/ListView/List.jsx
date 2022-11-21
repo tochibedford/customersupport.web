@@ -13,8 +13,8 @@ function List(props) {
   }
 
   return (
-    <div>
-      <table className={styles.table}>
+    <div className={styles.list__container}>
+      <table>
         <tr className={styles.table__row}>
           <td className={styles.checkbox}>
             <input type="checkbox" name="file" id="" />
