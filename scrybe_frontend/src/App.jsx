@@ -7,7 +7,7 @@ import { FAQs, TermsOfService } from "./pages";
 import LandingPage from "./pages/landing-page-a";
 import PageB from "./pages/Landing-page-b";
 import TermsAndCondition from "./pages/TermsAndCondition/TermsOfService";
-import History from "./pages/History/History";
+import History from "./pages/History/index";
 import Services from "./pages/services-page/Services";
 import Solutions from "./pages/solutions-page/Solutions";
 import DashboardOverview from "./pages/DashboardOverview";

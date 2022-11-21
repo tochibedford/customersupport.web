@@ -7,6 +7,7 @@ $primary-color: #ffffff;
 
 .table {
   width: 100%;
+  margin: 1rem;
 }
 
 .table__row {
@@ -21,9 +22,8 @@ $primary-color: #ffffff;
   display: flex;
 }
 
-.checkbox {
-  display: flex;
-  margin-right: 3rem;
+.name, .table__data_agent, .date, .analysis, .lenght {
+  width: 15rem;
 }
 
 .record__image_div {
