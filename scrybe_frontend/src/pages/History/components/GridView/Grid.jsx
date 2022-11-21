@@ -4,9 +4,9 @@ import styles from "./grid.module.scss";
 
 function Grid(props) {
   let color = [];
-  if (props.analysis == "Positive") {
+  if (props.analysis === "Positive") {
     color.push(styles.positiveColor);
-  } else if (props.analysis == "Negative") {
+  } else if (props.analysis === "Negative") {
     color.push(styles.negativeColor);
   } else {
     color.push(styles.neutralColor);
