@@ -27,12 +27,28 @@ $negative-color: #dbeab8;
   font-size: 12px;
 }
 
+.positiveColor {
+  background-color: #FFC2CB;
+  padding: 0.1rem 0.9rem;
+  border-radius: 4px;
+}
+
+.negativeColor {
+  background-color:#DBEAB8;
+  padding: 0.1rem 0.9rem;
+  border-radius: 4px;
+}
+
+.neutralColor {
+  background-color: #ECECEC;
+  padding: 0.1rem 0.9rem;
+  border-radius: 4px;
+}
+
 .analysis {
   @include flexCenter(3.4rem);
 
   .main__analysis {
     background-color: pink;
-    padding: 0.1rem 0.9rem;
-    border-radius: 4px;
   }
 }

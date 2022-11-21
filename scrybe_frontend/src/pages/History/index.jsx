@@ -4,8 +4,6 @@ import data from "./HistoryData";
 import styles from "./history.module.scss";
 import List from "./components/ListView/List";
 import ListHeader from "./components/ListHeader/ListHeader";
-import Filter from "./components/Filter/Filter";
-import Sidebar from "../../components/SideBar/Sidebar";
 
 export default function History() {
   const recordGrid = data.map((item) => (
@@ -50,22 +48,6 @@ export default function History() {
           >
             List
           </button>
-          {/* <select className={styles.select} name="Grid" id="">
-            <option
-              className={styles.option__grid}
-              onClick={() => setShow(false)}
-              value="Grid"
-            >
-               Grid
-            </option>
-            <option
-              className={styles.option__list}
-              onClick={() => setShow(true)}
-              value="List"
-            >
-              List
-            </option>
-          </select> */}
         </div>
         <div className={styles.history__nav2}>
           <select className={styles.select} name="filter" id="">
@@ -77,7 +59,6 @@ export default function History() {
         </div>
       </div>
       <hr />
-      {/* <Filter onClose={() => setShow(false)} show={show} /> */}
       <div className={styles.record}>{recordGrid}</div>
       <div className={styles.list__div}>
         <ListHeader />

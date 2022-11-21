@@ -3,11 +3,17 @@ import styles from "./list.module.scss";
 import image from "../../icons/callImage.png";
 
 function List(props) {
+  let color = [];
+  if (props.analysis === "Positive") {
+    color.push(styles.positiveColor);
+  } else if (props.analysis === "Negative") {
+    color.push(styles.negativeColor);
+  } else {
+    color.push(styles.neutralColor);
+  }
+
   return (
-    <div
-      className={`styles.listbox ${props.show ? "show" : ""}`}
-      onClick={props.onClose}
-    >
+    <div>
       <table className={styles.table}>
         <tr className={styles.table__row}>
           <td className={styles.checkbox}>
@@ -21,7 +27,7 @@ function List(props) {
           </td>
           <td className={styles.table__data_agent}>{props.agent}</td>
           <td className={styles.analysis}>
-            <h4>{props.analysis}</h4>
+            <h4 className={color}>{props.analysis}</h4>
           </td>
           <td className={styles.date}>
             {props.date} {props.time}

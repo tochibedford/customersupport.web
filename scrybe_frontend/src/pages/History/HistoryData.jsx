@@ -34,7 +34,7 @@ const data = [
   {
     name: "Call Record 100.mp3",
     lenght: "3:05",
-    analysis: "Positive",
+    analysis: "Neutral",
     date: "Nov 16, 2022",
     time: "11:06am",
     agent: "Bright Kennedy",
@@ -42,7 +42,7 @@ const data = [
   {
     name: "Call Record 100.mp3",
     lenght: "3:05",
-    analysis: "Positive",
+    analysis: "Neutral",
     date: "Nov 16, 2022",
     time: "11:06am",
     agent: "Julius Samuel",
@@ -82,7 +82,7 @@ const data = [
   {
     name: "Call Record 100.mp3",
     lenght: "3:05",
-    analysis: "Positive",
+    analysis: "Negative",
     date: "Nov 16, 2022",
     time: "11:06am",
     agent: "James Ade",
