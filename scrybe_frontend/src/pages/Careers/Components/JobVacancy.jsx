@@ -1,6 +1,6 @@
 import React from "react";
 import Banner from "./Banner.jsx";
-import "../Style/jobVacancy.scss";
+import style from "../Style/jobVacancy.module.scss";
 import NavBar from "../../../components/navBar/index.jsx";
 import Footer from "../../../components/footer/index.jsx";
 function JobVacancy() {
@@ -8,23 +8,23 @@ function JobVacancy() {
     <div>
       <NavBar />
       <Banner />
-      <div className="vacancy-container">
-        <div className="summary">
-          <div className="job-title">
+      <div className={style.vacancy_container}>
+        <div className={style.summary}>
+          <div className={style.job_title}>
             <h1>Front-End Developer</h1>
             <button>Apply</button>
           </div>
-          <div className="location">
+          <div className={style.location}>
             <p>Location: Lagos</p>
             <p>Job type: Fulltime</p>
             <p>Compensation: ~300,000</p>
           </div>
-          <div className="posted">
+          <div className={style.posted}>
             <p>Posted 8 days ago</p>
           </div>
         </div>
 
-        <div className="description">
+        <div className={style.description}>
           <p>
             We are looking for a qualified Front-end developer to join our IT
             team. You will be responsible for building the ‘client-side’ of our
@@ -48,7 +48,7 @@ function JobVacancy() {
           </p>
         </div>
 
-        <div className="responsnsibilities list">
+        <div className={`${style.responsnsibilities} ${style.list}`}>
           <h1>Responsibilities</h1>
           <ul>
             <li>
@@ -60,7 +60,7 @@ function JobVacancy() {
           </ul>
         </div>
 
-        <div className="skills list">
+        <div className={`${style.skills} ${style.list}`}>
           <h1>Skills Required</h1>
           <ul>
             <li>Experience with JavaScript, CSS and jQuery</li>

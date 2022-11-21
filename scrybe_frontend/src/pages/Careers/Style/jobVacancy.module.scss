@@ -1,4 +1,4 @@
-.vacancy-container {
+.vacancy_container {
     
     padding: 50px 5%;
     color: #1F1F1F;
@@ -18,7 +18,7 @@
         border-bottom: 1px solid #00A4FF;
         padding: 10px 0;
         margin-bottom: 20px;
-        .job-title {
+        .job_title {
             display: flex;
             margin: 15px 0;
             align-items: center;
@@ -60,6 +60,7 @@
         ul {
             position: relative;
             left: 30px;
+            list-style:disc ;
         }
     }
     
@@ -68,7 +69,7 @@
         padding: 50px 20%;
 
         .summary {
-            .job-title {
+            .job_title {
                 button {
                     margin-left: 120px;
                 }

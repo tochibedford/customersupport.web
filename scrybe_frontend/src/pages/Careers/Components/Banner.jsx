@@ -1,21 +1,21 @@
 import React from "react";
 import bannerImage from "../Assets/image-1.jpg";
 import { BsSearch } from "react-icons/bs";
-import "../Style/banner.scss";
+import style from "../Style/banner.module.scss";
 
 function Banner() {
   return (
-    <div className="problem-solvers">
+    <div className={style.problem_solvers}>
       <img src={bannerImage} alt="" />
-      <div className="problem-solvers-container">
+      <div className={style.problem_solvers_container}>
         <h1>We are looking for briliant problem solvers</h1>
-        <div className="input-containers">
-          <div className="input">
-            <BsSearch className="icon" />
+        <div className={style.input_containers}>
+          <div className={style.input}>
+            <BsSearch className={style.icon} />
             <input type="text" placeholder="Search by Team" />
           </div>
-          <div className="input">
-            <BsSearch className="icon" />
+          <div className={style.input}>
+            <BsSearch className={style.icon} />
             <input type="text" placeholder="Search by Location" />
           </div>
         </div>

@@ -1,9 +1,9 @@
-.main-container {
+.main_container {
   h1 {
     font-weight: 600;
   }
 
-  .our-promise {
+  .our_promise {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,8 +26,8 @@
       text-align: justify;
     }
 
-    .text-container {
-      .careers-button {
+    .text_container {
+      .careers_button {
         background: #006cff;
         border: none;
         padding: 8px 16px;
@@ -38,18 +38,18 @@
       }
     }
 
-    .img-container {
-      .careers-img {
+    .img_container {
+      .careers_img {
         width: 100%;
         z-index: 100;
       }
     }
   }
 
-  .our-promise-container {
+  .our_promise_container {
     background: rgb(224, 223, 223);
     margin-top: 20px;
-    .our-promise {
+    .our_promise {
       padding: 20px 10%;
       h1 {
         font-size: 14px;
@@ -62,7 +62,7 @@
         font-size: 12px;
       }
 
-      .our-promise-heading {
+      .our_promise_heading {
         padding-bottom: 5px;
         border-bottom: 1px solid cyan;
       }
@@ -80,7 +80,7 @@
     }
   }
 
-  .currently-hiring {
+  .currently_hiring {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,22 +102,22 @@
       color: white;
     }
 
-    .currently-hiring-heading {
+    .currently_hiring_heading {
       color: black;
     }
 
-    .currently-hiring-container {
+    .currently_hiring_container {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 5px;
 
-      .currently-hiring-grid {
+      .currently_hiring_grid {
         background: #006cff;
         padding: 5px 5px;
         padding-bottom: 20px;
         position: relative;
 
-        .see-more-link {
+        .see_more_link {
           position: absolute;
           bottom: 0px;
           right: 10px;
@@ -144,16 +144,16 @@
         font-size: 17px;
       }
 
-      .img-container {
+      .img_container {
         width: 100%;
       }
     }
 
-    .our-promise-container {
+    .our_promise_container {
       margin: 100px 0;
       padding-bottom: 100px;
 
-      .our-promise {
+      .our_promise {
         h1 {
           font-size: 19px;
           font-weight: 700;
@@ -164,7 +164,7 @@
           font-size: 17px;
         }
 
-        .our-promise-heading {
+        .our_promise_heading {
           font-size: 24px;
           padding-bottom: 20px;
           margin-bottom: 40px;
@@ -176,7 +176,7 @@
       }
     }
 
-    .currently-hiring {
+    .currently_hiring {
       padding: 0 10%;
       margin-bottom: 100px;
       h1,
@@ -195,18 +195,18 @@
         font-size: 17px;
       }
 
-      .currently-hiring-heading {
+      .currently_hiring_heading {
         margin: 20px 0;
         font-size: 24px;
       }
 
-      .currently-hiring-container {
+      .currently_hiring_container {
         gap: 20px;
-        .currently-hiring-grid {
+        .currently_hiring_grid {
           background: white;
           padding: 25px;
 
-          .see-more-link {
+          .see_more_link {
             bottom: -10px;
             a {
               color: #006cff;
@@ -214,7 +214,7 @@
           }
         }
 
-        .mid-grid {
+        .mid_grid {
           border-left: 1px solid black;
           border-right: 1px solid black;
         }

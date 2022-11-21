@@ -59,6 +59,8 @@ function App() {
       />
       {/* career page & legal */}
       <Route path="/careers" element={<Careers />} />
+      <Route path="/careers/vacancy" element={<JobVacancy />} />
+      <Route path="/careers/no-vacancy" element={<NotHiring />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
 
       {/* solutions & services */}

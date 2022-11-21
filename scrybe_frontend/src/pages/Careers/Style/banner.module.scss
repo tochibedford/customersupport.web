@@ -1,4 +1,4 @@
-.problem-solvers {
+.problem_solvers {
     position: relative;
  
     img {
@@ -6,7 +6,7 @@
         filter: brightness(40%);
     }
 
-    .problem-solvers-container {
+    .problem_solvers_container {
         width: 100%;
         position: absolute;
         bottom: 15%;
@@ -19,7 +19,7 @@
         }
         
 
-        .input-containers {
+        .input_containers {
             display: flex;
             justify-content: flex-start;
 
@@ -55,13 +55,13 @@
     }
 
     @media (min-width: 700px){
-        .problem-solvers-container {
+        .problem_solvers_container {
             h1 {
                 font-size: 50px;
                 margin-bottom: 50px;
             }
 
-            .input-containers {
+            .input_containers {
                 .input {
                     width: 20%;
                     padding: 12px 3px;
