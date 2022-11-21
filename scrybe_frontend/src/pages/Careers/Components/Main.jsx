@@ -1,18 +1,11 @@
 import Hero from "../Assets/image-2.jpg";
 import Banner from "./Banner";
-<<<<<<< HEAD
 import NavBar from "../../../components/navBar";
 import Footer from "../../../components/footer";
 function Main() {
   return (
     <div className="main-container">
       <NavBar />
-=======
-
-function Main() {
-  return (
-    <div className="main-container">
->>>>>>> 4e048e5397d3fae2a1ab16be8a7ba287fd565044
       <Banner />
       <div className="careers">
         <div className="text-container">
@@ -81,11 +74,7 @@ function Main() {
               brilliant Product design interns to our workforce.
             </p>
             <div className="see-more-link">
-<<<<<<< HEAD
               <a href="/">See more</a>
-=======
-              <a href="#">See more</a>
->>>>>>> 4e048e5397d3fae2a1ab16be8a7ba287fd565044
             </div>
           </div>
           <div className="currently-hiring-grid mid-grid">
@@ -95,11 +84,7 @@ function Main() {
               brilliant DevOps interns to our community.
             </p>
             <div className="see-more-link">
-<<<<<<< HEAD
-              <a href="/">See more</a>
-=======
               <a href="#">See more</a>
->>>>>>> 4e048e5397d3fae2a1ab16be8a7ba287fd565044
             </div>
           </div>
           <div className="currently-hiring-grid">
@@ -109,19 +94,11 @@ function Main() {
               dedicated and brilliant FE developers.
             </p>
             <div className="see-more-link">
-<<<<<<< HEAD
-              <a href="/">See more</a>
-=======
               <a href="#">See more</a>
->>>>>>> 4e048e5397d3fae2a1ab16be8a7ba287fd565044
             </div>
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-      <Footer />
-=======
->>>>>>> 4e048e5397d3fae2a1ab16be8a7ba287fd565044
     </div>
   );
 }
