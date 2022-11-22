@@ -37,33 +37,13 @@ import PasswordResetSuccessful from "./pages/PasswordResetSuccessful/PasswordRes
 function App() {
   return (
     <Routes>
-      {/* landing page */}
       <Route path="/" element={<LandingPage />} />
-      {/* sentiment analysis */}
       <Route path="/sentiment-analysis" element={<SentimentAnalysis />} />
-      {/* transcriptions */}
       <Route path="/transcriptions" element={<TranscribePage />} />
-      {/* try for free */}
-      <Route path="/try" element={<TryForFree someText="try for free" />} />
-      {/* press */}
-      <Route path="/press" element={<DummyPage someText="press" />} />
-      {/* settings */}
-      <Route path="/settings" element={<DummyPage someText="settings" />} />
-      {/* uploaded */}
-      <Route
-        path="/uploaded"
-        element={<DummyPage someText="uploaded recordings" />}
-      />
-      {/* history */}
+      <Route path="/try" element={<TryForFree />} />
       <Route path="/history" element={<History />} />
-      {/* help and support */}
-      <Route path="/help" element={<DummyPage someText="help and supprt" />} />
-      {/* sign in */}
-
-      {/* career page & legal */}
       <Route path="/careers" element={<Careers />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
-      {/* solutions & services */}
       <Route
         path="/services"
         element={<Services someText="solutions and services" />}
@@ -72,55 +52,20 @@ function App() {
         path="/solutions"
         element={<Solutions someText="solutions and services" />}
       />
-      {/* about us */}
       <Route path="/about-us" element={<About someText="about us" />} />
-      {/* events */}
       <Route path="/events" element={<Events someText="events" />} />
-      {/* agent report */}
-      <Route
-        path="/report"
-        element={<DummyPage someText="report and performance" />}
-      />
-      {/* upload pages */}
-      <Route path="/upload" element={<DummyPage someText="upload pages" />} />
-      {/* dashboard */}
       <Route path="/dashboard" element={<DashboardOverview />} />
-      {/* accounts */}
       <Route path="/accounts" element={<Account />} />
-      {/* industry */}
       <Route path="/industry" element={<Industry />} />
-      {/* industry article */}
       <Route path="/industryarticle" element={<IndustryArticle />} />
-      {/* how it works */}
       <Route path="/how-it-works" element={<HowitWorks />} />
-      {/* demo pages */}
-      <Route path="/demos" element={<DummyPage someText="demo pages" />} />
-      {/* reviews & pricing */}
-      <Route
-        path="/reviews-and-pricing"
-        element={<DummyPage someText="reviews and pricing" />}
-      />
-      {/* leaderboard */}
-      <Route
-        path="/leaderboard"
-        element={<DummyPage someText="leaderboard" />}
-      />
-      {/* terms and conditions */}
       <Route
         path="/terms"
         element={<TermsAndCondition someText="terms and conditions" />}
       />
-      {/* terms of service */}
-      <Route
-        path="/terms-of-service"
-        element={<DummyPage someText="terms of service" />}
-      />
-      {/* blog */}
-      <Route path="/blog" element={<DummyPage someText="blog" />} />
       <Route path="/homeB" element={<PageB />} />
       <Route path="faq" element={<FAQs />} />
       <Route path="faq-terms-of-service" element={<TermsOfService />} />
-      {/* HelpAndSupport */}
       <Route path="/help-support" element={<HelpSupport />} />
       <Route path="/help-support-general" element={<General />}>
         <Route index element={<General1 />} />
@@ -140,8 +85,6 @@ function App() {
         <Route index element={<PromotedArticle1 />} />
         <Route path="*" element={<PromotedArticle1 />} />
       </Route>
-
-      {/* Sign In, Sign Up and Reset Password  Flow */}
       <Route path="/create-account" element={<Signup />} />
       <Route path="/signin" element={<Signin />} />
       <Route path="/reset-successful" element={<Successful />} />
@@ -152,6 +95,28 @@ function App() {
         element={<PasswordResetSuccessful />}
       />
       <Route path="/uploaded-recordings" element={<UploadedRecordings />} />
+
+      {/* All Routes with a path but are not rendering any components */}
+      <Route path="/press" element={<DummyPage />} />
+      <Route path="/settings" element={<DummyPage />} />
+      <Route path="/uploaded" element={<DummyPage />} />
+      <Route path="/help" element={<DummyPage />} />
+      <Route path="/report" element={<DummyPage />} />
+      <Route path="/upload" element={<DummyPage someText="upload pages" />} />
+      <Route
+        path="/reviews-and-pricing"
+        element={<DummyPage someText="reviews and pricing" />}
+      />
+      <Route path="/demos" element={<DummyPage someText="demo pages" />} />
+      <Route
+        path="/leaderboard"
+        element={<DummyPage someText="leaderboard" />}
+      />
+      <Route
+        path="/terms-of-service"
+        element={<DummyPage someText="terms of service" />}
+      />
+      <Route path="/blog" element={<DummyPage someText="blog" />} />
     </Routes>
   );
 }
