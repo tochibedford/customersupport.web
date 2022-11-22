@@ -2,7 +2,7 @@ import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 import SentimentAnalysis from "./pages/SentimentAnalysis";
 import DummyPage from "./pages/DummyPage";
-import TranscribePage from "./pages/TranscribePage/TranscribePage";
+import TranscribePage from "./pages/TranscribePage/";
 import { FAQs, TermsOfService } from "./pages";
 import LandingPage from "./pages/landing-page-a";
 import PageB from "./pages/Landing-page-b";
