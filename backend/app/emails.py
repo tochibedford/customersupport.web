@@ -29,6 +29,11 @@ async def send_email(email: List, instance: User):
     token_data = {
         'email': instance.email,
         # 'username': instance.username
+
+async def send_email_reset(email: List, instance: User):
+    token_data = {
+        'id': instance.id,
+        'email': instance.email
     }
 
     token = jwt.encode(token_data, config_credentials['SECRET'], algorithm='HS256')
@@ -41,20 +46,18 @@ async def send_email(email: List, instance: User):
             </head>
             <body>
                 <div>
-                    <h3>Account Verification </h3>
+                    <h3>Password Reset</h3>
                     <br>
-                    <p>Thank you for registering with us. Kindly click on the link below to
-                    verify your email and have full acccess to the platform.</p>
-
-                    <a href="http://localhost:8000/verification?token={token}">Verify your email address </a>
+                    <p>You made a request to reset your password. Kindly click on the link to proceed
+                    or ignore this email if it wasn't requested by you.</p>
+                    <a href="http://localhost:8000/reset_password?token={token}">Reset your password </a>
                 </div>
             </body>
-
         </html>
     """
 
     message = MessageSchema(
-        subject = "Account Verification",
+        subject = "Password Reset",
         recipients =email,
         body = template,
         subtype = "html"
@@ -64,13 +67,11 @@ async def send_email(email: List, instance: User):
     await fm.send_message(message=message)
 
 
-async def verify_token(token: str, db: Session):
+async def verify_token(token: str):
     try:
         payload = jwt.decode(token, config_credentials['SECRET'], algorithms=['HS256'])
-        user = get_user_by_email(db, payload.get("email"))
-        
-    except Exception as e:
-        print(e)
+        user = await User.get(id = payload.get("id"))
+    except:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid or expired token",
