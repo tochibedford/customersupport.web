@@ -14,7 +14,7 @@ import settingsIcon from "./imgs/settings_icon.svg";
 import usrAvatar from "./imgs/user_avatar.svg";
 import styles from "./uploadedsidebar.module.scss";
 
-const UploadedSidebar = ({ closeSidebar, toggleSidebar }) => {
+const UploadedSidebar = ({ closeSidebar, toggleSidebar, getValue }) => {
   const [isToggled, setIsToggled] = React.useState(false);
   return (
     <div
@@ -33,7 +33,10 @@ const UploadedSidebar = ({ closeSidebar, toggleSidebar }) => {
           />
         </div>
         <div className={styles.UploadedSidebar_header_userInput}>
-          <SearchInput className="UploadedSidebar_inputWrap" />
+          <SearchInput
+            className="UploadedSidebar_inputWrap"
+            inputValue={getValue}
+          />
         </div>
         <div className={styles.UploadedSidebar_header_lists}>
           <div className={styles.UploadedSidebar_header_lists_item}>
@@ -96,6 +99,7 @@ const UploadedSidebar = ({ closeSidebar, toggleSidebar }) => {
 UploadedSidebar.propTypes = {
   toggleSidebar: PropTypes.bool.isRequired,
   closeSidebar: PropTypes.func.isRequired,
+  getValue: PropTypes.func.isRequired,
 };
 
 export default UploadedSidebar;

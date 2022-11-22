@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 
+import { PropTypes } from "prop-types";
 import React, { useEffect, useState } from "react";
 import closeModalIcon from "./imgs/close-icon.svg";
 import deleteIcon from "./imgs/delete-icon.svg";
@@ -79,7 +80,9 @@ const recordings = [
   },
 ];
 
-const TableData = () => {
+const TableData = ({ searchKeyword }) => {
+  console.log(`search in tabledata: ${searchKeyword}`);
+
   const [allRecordings, setAllRecordings] = useState(recordings);
   const [recordCheckedList, setRecordCheckedList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -130,7 +133,18 @@ const TableData = () => {
     }
   };
 
+  //search recordings
+  const searchRecordings = () => {
+    const newRecordings = recordings.filter((item) =>
+      item.fileName.toLowerCase().includes(searchKeyword.toLowerCase())
+    );
+    setAllRecordings(newRecordings);
+  };
+
   useEffect(() => {
+    if (searchKeyword) {
+      searchRecordings();
+    }
     allRecordingsProcessed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allRecordings]);
@@ -288,6 +302,12 @@ const TableData = () => {
       </div>
     </div>
   );
+};
+
+// its prop type
+TableData.propTypes = {
+  searchKeyword: PropTypes.string.isRequired,
+  // onSearch: PropTypes.bool.isRequired,
 };
 
 export default TableData;

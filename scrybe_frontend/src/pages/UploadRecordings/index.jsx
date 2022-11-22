@@ -5,18 +5,26 @@ import styles from "./uploadedRecordings.module.scss";
 import UploadedSidebar from "./UploadedSidebar";
 
 function UploadedRecordings() {
-  const [toggleSidebar, setToggleSidebar] = React.useState(true);
+  const [toggleSidebar, setToggleSidebar] = React.useState(false);
+  const [isSearching, setIsSearching] = React.useState("");
+  const setterFn = (e) => {
+    setIsSearching(e.target.value);
+  };
   return (
     <div className={styles.uploadedRecordingsParent}>
       <UploadedSidebar
+        getValue={(e) => setterFn(e)}
         toggleSidebar={toggleSidebar}
         closeSidebar={() => setToggleSidebar(!toggleSidebar)}
       />
       <div className={styles.uploadedRecordingsCol}>
         <div className={styles.uploadedRecordingsSideBar}>
-          <UploadedNavbar />
+          <UploadedNavbar
+            openSidebar={() => setToggleSidebar(!toggleSidebar)}
+            search={(e) => setterFn(e)}
+          />
         </div>
-        <TableData />
+        <TableData searchKeyword={isSearching} />
       </div>
     </div>
   );
