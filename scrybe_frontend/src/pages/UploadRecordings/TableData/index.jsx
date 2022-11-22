@@ -134,24 +134,25 @@ const TableData = ({ searchKeyword }) => {
   };
 
   //search recordings
-  const searchRecordings = () => {
-    const newRecordings = recordings.filter((item) =>
-      item.fileName.toLowerCase().includes(searchKeyword.toLowerCase())
-    );
-    setAllRecordings(newRecordings);
+  const searchRecordings = (allrecords) => {
+    return allrecords.filter((item) => {
+      return JSON.stringify(item.fileName)
+        .toLowerCase()
+        .includes(searchKeyword.toLowerCase());
+    });
   };
 
   useEffect(() => {
-    if (searchKeyword) {
-      searchRecordings();
-    }
+    // if (searchKeyword) {
+    //   searchRecordings();
+    // }
     allRecordingsProcessed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allRecordings]);
+  }, [allRecordings, searchKeyword]);
   return (
     <div
       className={`${styles.uploaded_recordings} ${
-        allRecordings.length < 1 ? styles.no_items_found : ""
+        searchRecordings(allRecordings).length < 1 ? styles.no_items_found : ""
       } ${recordingsProcessed ? styles.processed : ""}`}
     >
       <div className={styles.overall_table}>
@@ -205,9 +206,9 @@ const TableData = ({ searchKeyword }) => {
                 <th />
               </tr>
             </thead>
-            {allRecordings.length > 0 ? (
+            {searchRecordings(allRecordings).length > 0 ? (
               <tbody className={styles.uploaded_table_body}>
-                {allRecordings.map((recording) => (
+                {searchRecordings(allRecordings).map((recording) => (
                   <tr key={recording.id}>
                     <td
                       className={styles.uploaded_table_body_checkbox_img_wrap}
