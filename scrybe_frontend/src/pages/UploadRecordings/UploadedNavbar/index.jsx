@@ -1,7 +1,7 @@
 import React from "react";
+import SearchInput from "../SearchInput";
 import dropdown_arr from "./imgs/dropdownArr.svg";
 import logo from "./imgs/logo.svg";
-import searchIcon from "./imgs/searchIcon.svg";
 import toggleNavIcon from "./imgs/toggleNavIcon.svg";
 import uploadBtn_icon from "./imgs/uploadBtnIcon.svg";
 import usrAvatar from "./imgs/user_avatar.svg";
@@ -14,10 +14,7 @@ const UploadedNavbar = () => {
         <img src={toggleNavIcon} alt="" />
         <img src={logo} alt="" />
       </div>
-      <div className={styles.UploadedRecNavbar_inputwrap}>
-        <img src={searchIcon} alt="" className={styles.searchIcon} />
-        <input type="text" placeholder="Search" />
-      </div>
+      <SearchInput className="UploadedRecNavbar_inputwrap" />
       <div className={styles.UploadedRecNavbar_user_btn}>
         <div className={styles.UploadedRecNavbar_user}>
           <div className={styles.UploadedRecNavbar_user_desktop}>
