@@ -20,7 +20,7 @@ const UploadedSidebar = ({ closeSidebar, toggleSidebar, getValue }) => {
     <div
       className={`${styles.UploadedSidebar} ${
         isToggled ? styles.arrowRotate : ""
-      } ${toggleSidebar ? styles.showSidebar : ""}`}
+      } ${toggleSidebar ? styles.showSidebar : ""} `}
     >
       <div className={styles.UploadedSidebar_header}>
         <div className={styles.UploadedSidebar_header_logo_vs_closeIcon}>

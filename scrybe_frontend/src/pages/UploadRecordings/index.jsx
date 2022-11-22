@@ -11,7 +11,7 @@ function UploadedRecordings() {
     setIsSearching(e.target.value);
   };
   return (
-    <div className={styles.uploadedRecordingsParent}>
+    <div className={`${styles.uploadedRecordingsParent} `}>
       <UploadedSidebar
         getValue={(e) => setterFn(e)}
         toggleSidebar={toggleSidebar}
@@ -26,6 +26,12 @@ function UploadedRecordings() {
         </div>
         <TableData searchKeyword={isSearching} />
       </div>
+      {toggleSidebar && (
+        <div
+          className={toggleSidebar ? styles.sidebaroverlay : ""}
+          onClick={() => setToggleSidebar(!toggleSidebar)}
+        ></div>
+      )}
     </div>
   );
 }

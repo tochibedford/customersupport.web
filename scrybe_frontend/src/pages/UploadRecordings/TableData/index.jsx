@@ -81,8 +81,6 @@ const recordings = [
 ];
 
 const TableData = ({ searchKeyword }) => {
-  console.log(`search in tabledata: ${searchKeyword}`);
-
   const [allRecordings, setAllRecordings] = useState(recordings);
   const [recordCheckedList, setRecordCheckedList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -92,7 +90,6 @@ const TableData = ({ searchKeyword }) => {
   };
   const handleClose = () => {
     setOpenModal(false);
-    window.location.reload();
   };
   const timeLeft = 20;
 
@@ -113,7 +110,6 @@ const TableData = ({ searchKeyword }) => {
     setAllRecordings(newRecordings);
     setRecordCheckedList([]);
     handleClose();
-    window.location.reload();
   };
 
   const deleteRecording = (id) => {
@@ -121,7 +117,6 @@ const TableData = ({ searchKeyword }) => {
     setAllRecordings(newRecordings);
   };
 
-  // returns true if all recordings dont have the Processing status
   const allRecordingsProcessed = () => {
     const allProcessed = allRecordings.every(
       (item) => item.status !== "Processing"
@@ -133,7 +128,6 @@ const TableData = ({ searchKeyword }) => {
     }
   };
 
-  //search recordings
   const searchRecordings = (allrecords) => {
     return allrecords.filter((item) => {
       return JSON.stringify(item.fileName)
@@ -143,9 +137,6 @@ const TableData = ({ searchKeyword }) => {
   };
 
   useEffect(() => {
-    // if (searchKeyword) {
-    //   searchRecordings();
-    // }
     allRecordingsProcessed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allRecordings, searchKeyword]);
@@ -305,10 +296,8 @@ const TableData = ({ searchKeyword }) => {
   );
 };
 
-// its prop type
 TableData.propTypes = {
   searchKeyword: PropTypes.string.isRequired,
-  // onSearch: PropTypes.bool.isRequired,
 };
 
 export default TableData;
