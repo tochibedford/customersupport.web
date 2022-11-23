@@ -10,9 +10,9 @@ import React from "react";
 // import Icon from "../assets/table-icon.png";
 
 export default function BasicTable() {
-  function createData(name, length, size, uploaded) {
-    return { name, length, size, uploaded };
-  }
+  // function createData(name, length, size, uploaded) {
+  //   return { name, length, size, uploaded };
+  // }
 
   // const rows = [
   //   createData(
