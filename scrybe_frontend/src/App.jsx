@@ -7,11 +7,11 @@ import { FAQs, TermsOfService } from "./pages";
 import LandingPage from "./pages/landing-page-a";
 import PageB from "./pages/Landing-page-b";
 import TermsAndCondition from "./pages/TermsAndCondition/TermsOfService";
-
+import History from "./pages/History/History";
 import Services from "./pages/services-page/Services";
 import Solutions from "./pages/solutions-page/Solutions";
 import DashboardOverview from "./pages/DashboardOverview";
-import About from "./pages/AboutUs";
+import About from "./pages/AboutUs/About";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
       {/* transcriptions */}
       <Route path="/transcriptions" element={<TranscribePage />} />
       {/* try for free */}
-      <Route path="/try" element={<DummyPage someText="try for free" />} />
+      <Route path="/try" element={<TryForFree someText="try for free" />} />
       {/* press */}
       <Route path="/press" element={<DummyPage someText="press" />} />
       {/* settings */}
@@ -34,25 +34,22 @@ function App() {
         element={<DummyPage someText="uploaded recordings" />}
       />
       {/* history */}
-      <Route path="/history" element={<DummyPage someText="history" />} />
+      <Route path="/history" element={<History />} />
       {/* help and support */}
       <Route path="/help" element={<DummyPage someText="help and supprt" />} />
       {/* sign in */}
       <Route
-        path="/auth"
-        element={<DummyPage someText="sign-in, sign up, reset password" />}
+        path="/signin"
+        element={<Signin someText="sign-in, sign up, reset password" />}
       />
       {/* career page & legal */}
-      <Route
-        path="/careers-and-legal"
-        element={<DummyPage someText="career page and legal" />}
-      />
+      <Route path="/careers" element={<Careers />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
       {/* solutions & services */}
       <Route
         path="/services"
         element={<Services someText="solutions and services" />}
       />
-
       <Route
         path="/solutions"
         element={<Solutions someText="solutions and services" />}
@@ -60,7 +57,7 @@ function App() {
       {/* about us */}
       <Route path="/about-us" element={<About someText="about us" />} />
       {/* events */}
-      <Route path="/events" element={<DummyPage someText="events" />} />
+      <Route path="/events" element={<Events someText="events" />} />
       {/* agent report */}
       <Route
         path="/report"
@@ -71,9 +68,11 @@ function App() {
       {/* dashboard */}
       <Route path="/dashboard" element={<DashboardOverview />} />
       {/* accounts */}
-      <Route path="/accounts" element={<DummyPage someText="accounts" />} />
+      <Route path="/accounts" element={<Account />} />
       {/* industry */}
-      <Route path="/industry" element={<DummyPage someText="industry" />} />
+      <Route path="/industry" element={<Industry />} />
+      {/* how it works */}
+      <Route path="/how-it-works" element={<HowitWorks />} />
       {/* demo pages */}
       <Route path="/demos" element={<DummyPage someText="demo pages" />} />
       {/* reviews & pricing */}
@@ -100,7 +99,29 @@ function App() {
       <Route path="/blog" element={<DummyPage someText="blog" />} />
       <Route path="/homeB" element={<PageB />} />
       <Route path="faq" element={<FAQs />} />
-      <Route path="faq" element={<TermsOfService />} />
+      <Route path="faq-terms-of-service" element={<TermsOfService />} />
+      {/* HelpAndSupport */}
+      <Route path="/help-support" element={<HelpSupport />} />
+      <Route path="/help-support-general" element={<General />}>
+        <Route index element={<General1 />} />
+        <Route path="articles" element={<General2 />} />
+      </Route>
+      <Route
+        path="/help-support-general/promoted-articles"
+        element={<PromotedArticles />}
+      >
+        <Route index element={<PromotedArticle1 />} />
+        <Route path="*" element={<PromotedArticle1 />} />
+      </Route>
+      <Route
+        path="/help-support/promoted-articles"
+        element={<PromotedArticles />}
+      >
+        <Route index element={<PromotedArticle1 />} />
+        <Route path="*" element={<PromotedArticle1 />} />
+      </Route>
+      {/* uploaded recordings */}
+      <Route path="/uploaded-recordings" element={<UploadedRecordings />} />
     </Routes>
   );
 }
