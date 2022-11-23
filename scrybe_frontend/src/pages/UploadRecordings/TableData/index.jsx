@@ -9,6 +9,7 @@ import closeModalIcon from "./imgs/close-icon.svg";
 import deleteIcon from "./imgs/delete-icon.svg";
 import notfoundImg from "./imgs/notfound.svg";
 import soundwave from "./imgs/soundwave.svg";
+import uploadBtn_icon from "./imgs/uploadBtnIcon.svg";
 import styles from "./tabledata.module.scss";
 
 // dummy recordings
@@ -150,7 +151,7 @@ const TableData = ({ searchKeyword }) => {
         <div
           className={`${openModal ? styles.modal_open : styles.modal_close}`}
         >
-          <div className={styles.modal}>
+          <div className={styles.uploaded_modal}>
             <div className={styles.modalbox}>
               <div className={styles.close_modal_icon} onClick={handleClose}>
                 <img src={closeModalIcon} alt="close modal icon" />
@@ -183,6 +184,10 @@ const TableData = ({ searchKeyword }) => {
             Estimated Time Left:{" "}
             <strong className={styles.est_time_left_num}>{timeLeft}</strong> Min
           </h2>
+          <div className={styles.UploadedNavbarRec_btnwrap}>
+            <img src={uploadBtn_icon} alt="" />
+            <button className={styles.UploadedNavbarRec_btn}>Upload</button>
+          </div>
         </div>
         <div className={styles.uploaded_table_wrap}>
           <table className={styles.uploaded_table}>
@@ -263,7 +268,7 @@ const TableData = ({ searchKeyword }) => {
             )}
           </table>
         </div>
-        {allRecordings.length > 0 && (
+        {searchRecordings(allRecordings).length > 0 && (
           <div className={styles.uploaded_recordings_options}>
             <div className={styles.bulkbtn_calbackurl_wrap}>
               <div className={styles.bulkselect_wrap}>

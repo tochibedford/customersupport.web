@@ -187,3 +187,32 @@
     left: 0;
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .UploadedSidebar {
+    position: absolute;
+    top: 0;
+    left: -18em;
+    z-index: 5;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    .UploadedSidebar_header_userInput {
+      display: block !important;
+    }
+    //header side
+    .UploadedSidebar_header_logo_vs_closeIcon {
+      .logo {
+        width: 100px;
+      }
+      .SdiebarcloseIcon {
+        display: block;
+      }
+    }
+  }
+  .showSidebar {
+    left: 0;
+  }
+}

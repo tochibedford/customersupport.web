@@ -130,3 +130,31 @@
     }
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .UploadedRecNavbar {
+    // background: #000;
+    padding: 0.5rem;
+
+    .UploadedRecNavbar_toggle {
+      display: flex;
+    }
+
+    .UploadedRecNavbar_user_desktop {
+      display: none !important;
+    }
+    .UploadedNavbarRec_btnwrap {
+      display: none !important;
+    }
+    .UploadedRecNavbar_user_mobile {
+      display: block !important;
+      float: right;
+      position: relative;
+      img {
+        // position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+    }
+  }
+}
