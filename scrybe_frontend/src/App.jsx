@@ -1,5 +1,6 @@
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
+import AgentReport from "./pages/AgentReport";
 import SentimentAnalysis from "./pages/SentimentAnalysis";
 import DummyPage from "./pages/DummyPage";
 import TranscribePage from "./pages/TranscribePage/TranscribePage";
@@ -13,11 +14,11 @@ import Solutions from "./pages/Solutions/Solutions";
 import DashboardOverview from "./pages/DashboardOverview";
 import Events from "./pages/Events/Events";
 import HelpSupport from "./pages/HelpAndSupport/HelpSupport";
-import General from "./components/HelpAndSupport/HelpAndSupportGeneral/General";
-import General1 from "./components/HelpAndSupport/general1/General1";
-import General2 from "./components/HelpAndSupport/general2/General2";
-import PromotedArticles from "./components/HelpAndSupport/promoted-articles/PromotedArticles";
-import PromotedArticle1 from "./components/HelpAndSupport/PromotedArticle1/PromotedArticle1";
+// import General from "./components/HelpAndSupport/HelpAndSupportGeneral/General";
+// import General1 from "./components/HelpAndSupport/general1/General1";
+// import General2 from "./components/HelpAndSupport/general2/General2";
+// import PromotedArticles from "./components/HelpAndSupport/promoted-articles/PromotedArticles";
+// import PromotedArticle1 from "./components/HelpAndSupport/PromotedArticle1/PromotedArticle1";
 import About from "./pages/AboutUs/About";
 import TryForFree from "./pages/TryForFree";
 import Industry from "./pages/indsutry/industry";
@@ -27,7 +28,7 @@ import Account from "./pages/Account";
 import Signin from "./pages/SignIn/SignIn";
 import Careers from "./pages/Careers";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import IndustryArticle from "./components/Industry/industryArticle";
+// import IndustryArticle from "./components/Industry/industryArticle";
 import Signup from "./pages/SignUp/SignUp";
 import Successful from "./pages/Successful/Successful";
 import SetNewPassword from "./pages/SetNewPassword/SetNewPassword";
@@ -40,6 +41,7 @@ function App() {
       {/* landing page */}
       <Route path="/" element={<LandingPage />} />
       {/* sentiment analysis */}
+      <Route path="/agent-report" element={<AgentReport />} />
       <Route path="/sentiment-analysis" element={<SentimentAnalysis />} />
       {/* transcriptions */}
       <Route path="/transcriptions" element={<TranscribePage />} />
@@ -90,7 +92,7 @@ function App() {
       {/* industry */}
       <Route path="/industry" element={<Industry />} />
       {/* industry article */}
-      <Route path="/industryarticle" element={<IndustryArticle />} />
+      {/* <Route path="/industryarticle" element={<IndustryArticle />} /> */}
       {/* how it works */}
       <Route path="/how-it-works" element={<HowitWorks />} />
       {/* demo pages */}
@@ -122,24 +124,24 @@ function App() {
       <Route path="faq-terms-of-service" element={<TermsOfService />} />
       {/* HelpAndSupport */}
       <Route path="/help-support" element={<HelpSupport />} />
-      <Route path="/help-support-general" element={<General />}>
+      {/* <Route path="/help-support-general" element={<General />}>
         <Route index element={<General1 />} />
         <Route path="articles" element={<General2 />} />
-      </Route>
-      <Route
+      </Route> */}
+      {/* <Route
         path="/help-support-general/promoted-articles"
         element={<PromotedArticles />}
       >
         <Route index element={<PromotedArticle1 />} />
         <Route path="*" element={<PromotedArticle1 />} />
-      </Route>
-      <Route
+      </Route> */}
+      {/* <Route
         path="/help-support/promoted-articles"
         element={<PromotedArticles />}
       >
         <Route index element={<PromotedArticle1 />} />
         <Route path="*" element={<PromotedArticle1 />} />
-      </Route>
+      </Route> */}
 
       {/* Sign In, Sign Up and Reset Password  Flow */}
       <Route path="/create-account" element={<Signup />} />
@@ -152,6 +154,7 @@ function App() {
         element={<PasswordResetSuccessful />}
       />
       <Route path="/uploaded-recordings" element={<UploadedRecordings />} />
+      <Route path="/agent-report" element={<AgentReport />} />
     </Routes>
   );
 }
