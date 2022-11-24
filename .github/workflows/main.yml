@@ -1,14 +1,37 @@
-name: Main Testing
+name: Main
 
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
-  
+  Test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./scrybe_frontend
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: npm install --force
+
+    - name: Run the tests
+      run: npm ci
+      
+    - name: Build
+      run: npm run build --if-present
+      
+    - name: test
+      run: npm test
+
+
   build_and_push_to_registry:
 
-    # name: Build and push Docker Frontend image to Docker Hub
+    # name: Build and push Docker images to Docker Hub
     # if: github.event.pull_request.merged == true
 
     runs-on: ubuntu-latest
@@ -31,7 +54,7 @@ jobs:
       
       - name: docker build, tag and push
         run: |
-          docker build -t vicdam/scrybefrontend:${{ steps.commit.outputs.short }}.
+          docker build -t vicdam/scrybefrontend:${{ steps.commit.outputs.short }} .
           docker push vicdam/scrybefrontend:${{ steps.commit.outputs.short }}
 
       - name: docker build, tag and push
@@ -48,6 +71,9 @@ jobs:
     steps:
       - name: Checkout master
         uses: actions/checkout@master
+        
+      - id: commit
+        uses: pr-mpt/actions-commit-hash@v1       
 
       - name: Pull from GitHub
         uses: appleboy/ssh-action@master
@@ -57,11 +83,11 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           KEY: ${{ secrets.KEY }}
           script: |
-            export IMAGE_TAG=${{ steps.commit.outputs.short }}
-            sudo docker-compose stop
-            sudo docker-compose rm -f
-            sudo docker-compose pull   
-            sudo docker-compose up -d             
+            echo IMAGE_TAG=${{ steps.commit.outputs.short }} > .env
+            docker-compose stop
+            docker-compose rm -f
+            docker-compose pull   
+            docker-compose up -d             
             
 
 

@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 
 import models
 from crud import get_user_by_email
-from db import engine, SessionLocal
+# from db import engine, SessionLocal
 
 from dotenv import load_dotenv
 import os
@@ -88,7 +88,7 @@ def authenticate_user(db: Session, email: str, password: str):
     user = get_user_by_email(db, email)
     if not user:
         return False
-    if not verify_password(password, user.hashed_password):
+    if not verify_password(password, user.password):
         return False
     return user
 
@@ -111,7 +111,7 @@ def create_refresh_token(data: dict, expires_delta: Union[timedelta, None] = Non
         expire = datetime.utcnow() + expires_delta
     else:
         expire = datetime.utcnow() + timedelta(minutes=1440)
-    
+
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, JWT_REFRESH_SECRET_KEY, algorithm=ALGORITHM)
     #code that saves encoded_jwt to database
@@ -125,7 +125,7 @@ async def main_login(form_data, db):
             form_data: OAuth2PasswordRequestForm = Depends()
     """
 
-    
+
     user = authenticate_user(db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(
@@ -141,8 +141,8 @@ async def main_login(form_data, db):
     refresh_token = create_refresh_token(
         data={"sub": user.email}, expires_delta=refresh_token_expires
     )
-    return {"access_token": access_token, 
-            "refresh_token": refresh_token, 
+    return {"access_token": access_token,
+            "refresh_token": refresh_token,
             "token_type": "bearer"}
 
 
