@@ -7,7 +7,7 @@ import Overlay from "../Components/SettingsPageOverlay/SettingsPageOverlay";
 import ProfilePic from "../assets/images/Pic.png";
 import ChevronRight from "../assets/icons/chevron-right.svg";
 import SideBar from "../../../components/SideBar";
-import NavBar from "../../../components/navBar/index";
+// import NavBar from "../../../components/navBar/index";
 import Footer from "../../../components/footer/index";
 
 import { Link } from "react-router-dom";
@@ -67,25 +67,25 @@ const MainPage = () => {
 
   return (
     <>
-      <div className={MainPageCss.mainpage__wrapper}>
-        {window.innerWidth > 768 && <SideBar />}
-        <div className={MainPageCss.mainpage__container}>
-          {window.innerWidth <= 768 && <NavBar />}
-          <div className={MainPageCss.mainpage_container}>
-            <div className={MainPageCss.mainpage_wrapper}>
-              <div className={MainPageCss.mainpage_header}>
-                <h1>Settings</h1>
-              </div>
-              <div className={MainPageCss.mainpage_profileCard}>
-                <div className={MainPageCss.image}>
-                  <img src={ProfilePic} alt="profile" className="" />
+      <SideBar>
+        <div className={MainPageCss.mainpage__wrapper}>
+          <div className={MainPageCss.mainpage__container}>
+            <div className={MainPageCss.mainpage_container}>
+              <div className={MainPageCss.mainpage_wrapper}>
+                <div className={MainPageCss.mainpage_header}>
+                  <h1>Settings</h1>
                 </div>
-                <div className={MainPageCss.mainpage_textContent}>
-                  <h2>John Doe</h2>
-                  <p className={MainPageCss.title}>Administrator</p>
-                  <p className={MainPageCss.email}>
-                    johndoe.admin@businessemail.com
-                  </p>
+                <div className={MainPageCss.mainpage_profileCard}>
+                  <div className={MainPageCss.image}>
+                    <img src={ProfilePic} alt="profile" className="" />
+                  </div>
+                  <div className={MainPageCss.mainpage_textContent}>
+                    <h2>John Doe</h2>
+                    <p className={MainPageCss.title}>Administrator</p>
+                    <p className={MainPageCss.email}>
+                      johndoe.admin@businessemail.com
+                    </p>
+                  </div>
                 </div>
                 <section className={MainPageCss.mainpage_options}>
                   <Link
@@ -174,7 +174,10 @@ const MainPage = () => {
                 />
               )}
               {window.innerWidth > 768 && isPage && !isMobile && (
-                <div className={MainPageCss.external}>
+                <div
+                  style={{ display: !isPage ? "none" : "block" }}
+                  className={MainPageCss.external}
+                >
                   {isPage && !isMobile && <PersonalInformation />}
                 </div>
               )}
@@ -195,8 +198,8 @@ const MainPage = () => {
               <Footer />
             </div>
           </div>
-        </SideBar>
-      </div>
+        </div>
+      </SideBar>
     </>
   );
 };
