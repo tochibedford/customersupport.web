@@ -3,7 +3,6 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, E
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from datetime import datetime
-
 from db import Base
 
 class Company(Base):
@@ -11,6 +10,7 @@ class Company(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
+    address = Column(String, index=True)
     size = Column(Integer)
 
     users = relationship("User", back_populates="company")
@@ -24,13 +24,16 @@ class User(Base):
     last_name = Column(String, index=True)
     email = Column(String, unique=True, index=True)
     password = Column(String)
+    phone_number = Column(String)
     is_active = Column(Boolean, default=False)
-    is_admin = Column(Boolean, default=False)
+    is_admin = Column(Boolean, default=True)
     is_verified = Column(Boolean, default=False)
     company_id = Column(Integer, ForeignKey("companies.id"))
     created_at = Column(DateTime(timezone=True), default=datetime.now())
+    
 
     company = relationship("Company", back_populates="users")
+
 
 class Agent(Base):
     __tablename__ = "agents"

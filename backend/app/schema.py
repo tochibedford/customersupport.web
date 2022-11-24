@@ -7,12 +7,12 @@ class UserBase(BaseModel):
     first_name: str
     last_name: str
     email: str
-    created_at: datetime
-
 
 class UserCreate(UserBase):
-    company_name: str
     password: str
+    phone_number: str
+    company_name: str
+    company_address: str
 
 class User(UserBase):
     id: int
@@ -20,6 +20,8 @@ class User(UserBase):
     is_active: bool
     is_admin: bool
     is_verified: bool
+    phone_number: str
+    created_at: datetime
 
     class Config:
         orm_mode = True
@@ -28,6 +30,7 @@ class user_update(BaseModel):
     firstname: str
     lastname: str
     email: EmailStr
+    phone_number: str
 
 class JobBase(BaseModel):
     job_status: str
@@ -80,6 +83,7 @@ class Agent(AgentBase):
 
 class CompanyBase(BaseModel):
     name: str
+    address: str
     size: int
 
 class CompanyCreate(CompanyBase):
@@ -89,6 +93,7 @@ class Company(CompanyBase):
     id: int
     users : list[User] = []
     audios : list[Agent] = []
+   
 
     class Config:
         orm_mode = True

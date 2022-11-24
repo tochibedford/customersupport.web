@@ -15,7 +15,7 @@ import crud, schema
 from emails import send_email, verify_token
 from starlette.requests import Request
 import fastapi as _fastapi
-from auth import get_current_user
+
 
 # Dependency
 def get_db():
@@ -155,8 +155,6 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     return db_user
 
 
-
-
 @app.get('/verification')
 async def email_verification(request: Request, token: str, db: Session = Depends(get_db)):
 
@@ -165,6 +163,7 @@ async def email_verification(request: Request, token: str, db: Session = Depends
 
     if user and not user.is_active:
         user.is_active = True
+        user.is_verified = True
         db.commit()
         return{
             "status" : "ok",
@@ -174,32 +173,6 @@ async def email_verification(request: Request, token: str, db: Session = Depends
 def update_user(user: schema.user_update, user_id: int, db:Session=_fastapi.Depends(get_db)):
      return crud.update_user(db=db, user=user, user_id=user_id)
 
-@app.get("/audios/", response_model=list[schema.Audio], tags=['audios'])
-def read_audios(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    audios = crud.get_audios(db, skip=skip, limit=limit)
-    return audios
-
-
-@app.get('/audios/{audio_id}/sentiment')
-def read_sentiment(audio_id: int, db: Session = Depends(get_db), user: models.User = Depends(get_active_user)):
-    db_audio = crud.get_audio(db, audio_id=audio_id)
-    if db_audio is None:
-        raise HTTPException(status_code=404, detail="Sentiment does not exist")
-    else:
-        positivity_score = float(db_audio.positivity_score)
-        negativity_score = float(db_audio.negativity_score)
-        neutrality_score = float(db_audio.neutrality_score)
-        overall_sentiment = str(db_audio.overall_sentiment)
-        most_positive_sentences = json.loads(db_audio. most_positive_sentences)
-        most_negative_sentences = json.loads(db_audio. most_negative_sentences)
-        transcript = db_audio.transcript
-    sentiment = {"transcript": transcript,
-                 "positivity_score": positivity_score, 
-                 "negativity_score": negativity_score, 
-                 "neutrality_score": neutrality_score, 
-                 "overall_sentiment": overall_sentiment,
-                 "most_positive_sentences": most_positive_sentences,
-                 "most_negative_sentences": most_negative_sentences,
-                 }
-    return sentiment
-
+@app.get("/account")
+async def my_account (user: models.User = Depends(get_active_user)):
+    return user
