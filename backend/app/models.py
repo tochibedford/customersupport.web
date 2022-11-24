@@ -11,6 +11,7 @@ class Company(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
+    address = Column(String, index=True)
     size = Column(Integer)
 
     users = relationship("User", back_populates="company")
@@ -23,9 +24,10 @@ class User(Base):
     first_name = Column(String, index=True)
     last_name = Column(String, index=True)
     email = Column(String, unique=True, index=True)
+    phone_number = Column(String)
     password = Column(String)
     is_active = Column(Boolean, default=False)
-    is_admin = Column(Boolean, default=False)
+    is_admin = Column(Boolean, default=True)
     is_verified = Column(Boolean, default=False)
     company_id = Column(Integer, ForeignKey("companies.id"))
     created_at = Column(DateTime(timezone=True), default=datetime.now())
