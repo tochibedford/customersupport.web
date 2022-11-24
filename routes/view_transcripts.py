@@ -2,21 +2,23 @@ from typing import Union, List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 import services as _services
-from .. import Audio
+from .. import Audio, Job 
 
 transcript_router = APIRouter(
-    prefix="view_transcripts",
+    prefix="/transcription",
     tags=["TRANSCRIPTION"]
 )
 
-""" Please Note that these endpoints are subject to change as the query would be better suited to retrieve transcripts from the transcript table by transcript_id and
-    not Audio by audio_id.
-    If the transcript table is available, the code will be refractored to implement changes and queries to the transcript table """
+# """ Please Note that these endpoints are subject to change as the query would be better suited to retrieve transcripts from the transcript table by transcript_id and
+#     not Audio by audio_id.
+#     If the transcript table is available, the code will be refractored to implement changes and queries to the transcript table """
 
 # ENDPOINT TO GET A PARTICULAR TRANSCRIPT USING THE AUDIO ID
-@transcript_router.get("/{id}", response_model=schemas.Audio, description="Retrieving transcript by audio ID")
-def view_transcript(id: Union[int, str], db: Session = Depends(_services.get_session)):
-    transcript_audio = db.query(models.Audio).filter(models.Audio.id == id).first()
+@transcript_router.get("/{job_id}", response_model=schemas.Job, description="Retrieving transcript by audio ID")
+def view_transcript(job_id: Union[int, str], db: Session = Depends(_services.get_session)):
+    Job = db.query(models.Job).filter(models.Job.id == job_id).first()
+    job_audio_id = Job.audio_id
+    transcript_audio = db.query(models.Audio).filter(models.Audio.id == job_audio_id).first()
     transcript_text = transcript_audio.transcript
     return transcript_text
 
