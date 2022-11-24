@@ -95,3 +95,4 @@ class Company(CompanyBase):
 
 class Analysis(AudioBase):
     pass
+

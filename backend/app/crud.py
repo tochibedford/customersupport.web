@@ -108,4 +108,14 @@ def create_analysis(db, result= schema.Audio, user_id=int):
     return db_analysis
 
 def get_analysis(db: Session, analysis_id = int):
-    return db.query(models.Analysis).filter(models.Analysis == analysis_id).first()
+    return db.query(models.Analysis).filter(models.Analysis == analysis_id).first
+
+
+def update_password(db: Session, new_password: str, user):
+    User = models.User
+    update_db = "UPDATE {} SET User.password=? WHERE User.email =? [...] ({}, {})".format(User, user.email, pwd_context.hash(new_password))
+    #update_db = models.User(first_name=user.first_name, last_name=user.last_name, email=user.email, password=pwd_context.hash(new_password), company_id = user.company_id)
+    db.execute(update_db)
+    db.commit()
+    db.refresh(update_db)
+    return get_user_by_email(db, user.email)

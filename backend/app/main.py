@@ -12,7 +12,7 @@ from routers.score import score_count
 import models, json
 from auth import get_active_user
 from jwt import (
-    main_login
+    main_login, main_reset_password
 )
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
@@ -20,7 +20,7 @@ from db import Base, engine, SessionLocal
 from sqlalchemy.orm import Session
 import crud, schema
 
-from emails import send_email, verify_token
+from emails import send_email, verify_token, send_password_reset_email, verify_reset_token
 from starlette.requests import Request
 import fastapi as _fastapi
 from auth import get_current_user
@@ -248,3 +248,28 @@ def get_agents_leaderboard(db: Session = Depends(get_db)):
     ORDER BY Positive_score DESC""")
     leaderboard = [dict(r) for r in results]
     return {"Agents Leaderboard": leaderboard}
+ 
+ 
+@app.post("/forgot_password")
+async def forgot_password(email: str, db: Session = Depends(get_db)):
+    user_exist = crud.get_user_by_email(db, email)
+    if not user_exist:
+        raise HTTPException(status_code=404, detail="User not Found")
+    #if not user_exist.is_verified:
+        #raise HTTPException(status_code=404, detail="You need to be verified to reset your password!!!")
+    await send_password_reset_email([user_exist.email], user_exist)
+    return user_exist.email
+    
+    
+@app.post("/reset_password")
+async def reset_password(token: str, password1: str, password2: str, db: Session = Depends(get_db)):
+    if (password1 != password2):
+        raise HTTPException(status_code=404, detail="Password doesnot match")
+    #decode the token
+    user = await verify_reset_token(token, db)
+    check = await main_reset_password(password1, user, db)
+    if not check:
+        raise HTTPException(status_code=404, detail="password must be different from old")
+    return check
+    
+
