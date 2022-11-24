@@ -68,26 +68,24 @@ const MainPage = () => {
   return (
     <>
       <div className={MainPageCss.mainpage__wrapper}>
-        {/* {window.innerWidth > 768 && <SideBar />} */}
-        <SideBar>
-          <div className={MainPageCss.mainpage__container}>
-            {window.innerWidth <= 768 && <NavBar />}
-            <div className={MainPageCss.mainpage_container}>
-              <div className={MainPageCss.mainpage_wrapper}>
-                <div className={MainPageCss.mainpage_header}>
-                  <h1>Settings</h1>
+        {window.innerWidth > 768 && <SideBar />}
+        <div className={MainPageCss.mainpage__container}>
+          {window.innerWidth <= 768 && <NavBar />}
+          <div className={MainPageCss.mainpage_container}>
+            <div className={MainPageCss.mainpage_wrapper}>
+              <div className={MainPageCss.mainpage_header}>
+                <h1>Settings</h1>
+              </div>
+              <div className={MainPageCss.mainpage_profileCard}>
+                <div className={MainPageCss.image}>
+                  <img src={ProfilePic} alt="profile" className="" />
                 </div>
-                <div className={MainPageCss.mainpage_profileCard}>
-                  <div className={MainPageCss.image}>
-                    <img src={ProfilePic} alt="profile" className="" />
-                  </div>
-                  <div className={MainPageCss.mainpage_textContent}>
-                    <h2>John Doe</h2>
-                    <p className={MainPageCss.title}>Administrator</p>
-                    <p className={MainPageCss.email}>
-                      johndoe.admin@businessemail.com
-                    </p>
-                  </div>
+                <div className={MainPageCss.mainpage_textContent}>
+                  <h2>John Doe</h2>
+                  <p className={MainPageCss.title}>Administrator</p>
+                  <p className={MainPageCss.email}>
+                    johndoe.admin@businessemail.com
+                  </p>
                 </div>
                 <section className={MainPageCss.mainpage_options}>
                   <Link

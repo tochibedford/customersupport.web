@@ -27,14 +27,18 @@ import Successful from "./pages/Successful/Successful";
 import SetNewPassword from "./pages/SetNewPassword/SetNewPassword";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import PasswordResetSuccessful from "./pages/PasswordResetSuccessful/PasswordResetSuccessful";
-import FAQs from "./pages/FaqsPage";
-import TermsOfService from "./pages/TermsOfService";
-import Blogs from "./pages/BlogsPage";
-import BlogPostPage from "./pages/BlogPostPage";
+import FAQs from "./pages/FaqsPage/FaqComponent";
 import LeaderboardPage from "./pages/LeaderBoard/Leaderboard";
 import Reviews from "./pages/Reviews/Reviews";
 import TryProcessing from "./pages/TryForFree/tryProcessing";
 import TryResults from "./pages/TryForFree/tryResults";
+import TermsOfService from "./pages/TermsOfService";
+import Blogs from "./pages/BlogsPage";
+import BlogPostPage from "./pages/BlogPostPage";
+import SettingsIndex from "./pages/Settings/SettingsIndex";
+import AccountSettings from "./pages/Settings/SettingsPageSubPages/AccountSettings/AccountSettings";
+import NotificationSettings from "./pages/Settings/SettingsPageSubPages/Notifications/NotificationSettings";
+import PersonalInformation from "./pages/Settings/SettingsPageSubPages/PersonalInformation/PersonalInformationSettings";
 
 function App() {
   return (
@@ -95,7 +99,8 @@ function App() {
 
       {/* ROutes without working paths */}
       <Route path="/press" element={<DummyPage someText="press" />} />
-      <Route path="/settings" element={<DummyPage someText="settings" />} />
+      {/* <Route path="/settings" element={<DummyPage someText="settings" />} /> */}
+
       <Route
         path="/uploaded"
         element={<DummyPage someText="uploaded recordings" />}
@@ -114,6 +119,15 @@ function App() {
       {/* Try Routes */}
       <Route path="/try-processing" element={<TryProcessing />} />
       <Route path="/try-results" element={<TryResults />} />
+
+      {/* Settings Pages */}
+      <Route path="/settings" element={<SettingsIndex />} />
+      <Route path="settings/account-security" element={<AccountSettings />} />
+      <Route path="settings/notifications" element={<NotificationSettings />} />
+      <Route
+        path="settings/personal-information"
+        element={<PersonalInformation />}
+      />
     </Routes>
   );
 }
