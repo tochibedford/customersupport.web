@@ -101,8 +101,7 @@
 
 @media (min-width: 768px) {
   .AccountPage_wrapper {
-    width: 90%;
-    margin: 0 auto 2rem;
+    margin: 0 0 2rem;
 
     .form {
       label {
@@ -124,9 +123,6 @@
   }
 }
 @media (min-width: 1024px) {
-  .AccountPage_wrapper {
-    margin-right: 4.5rem;
-  }
 
   .formGroup {
     width: 100%;

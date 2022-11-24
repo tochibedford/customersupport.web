@@ -102,10 +102,12 @@ a {
 
       .image {
         width: 50%;
+        display: flex;
+        justify-content: center;
         margin-bottom: 1rem;
       }
 
-      .textContent {
+      .mainpage_textContent {
         width: 100%;
         text-align: center;
       }

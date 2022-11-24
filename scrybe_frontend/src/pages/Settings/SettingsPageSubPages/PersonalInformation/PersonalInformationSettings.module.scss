@@ -136,8 +136,7 @@
 
 @media (min-width: 768px) {
   .PersonalInfo_wrapper {
-    width: 90%;
-    margin: 0 auto 2rem;
+    margin: 0 0 2rem;
 
     .formGroup {
       input {
@@ -152,7 +151,6 @@
 }
 @media (min-width: 1024px) {
   .PersonalInfo_wrapper {
-    margin-right: 4.5rem;
 
     .formGroup {
       label {
