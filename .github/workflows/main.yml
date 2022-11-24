@@ -1,14 +1,36 @@
-name: Main Testing
+name: Main
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  
+  Test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./scrybe_frontend
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: npm install --force
+
+    - name: Run the tests
+      run: npm ci
+      
+    - name: Build
+      run: npm run build --if-present
+      
+    - name: test
+      run: npm test
+
+
   build_and_push_to_registry:
 
-    # name: Build and push Docker Frontend image to Docker Hub
+    # name: Build and push Docker images to Docker Hub
     # if: github.event.pull_request.merged == true
 
     runs-on: ubuntu-latest
