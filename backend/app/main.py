@@ -14,6 +14,7 @@ from jwt import (
 )
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
+from sqlalchemy import func
 from db import Base, engine, SessionLocal
 from sqlalchemy.orm import Session
 import crud, schema
@@ -298,3 +299,43 @@ def get_agents_leaderboard(db: Session = Depends(get_db)):
 async def my_profile (db: Session = Depends(get_db), user: models.User = Depends(get_active_user)):
     user_id = user.id
     return crud.get_user_profile(db, user_id)
+
+
+@app.get("/AgentDetails", tags=['Agent Performance'])
+def get_agent_performance(db: Session = Depends(get_db)):
+    results = db.execute("""SELECT agent_id,
+        SUM(CASE WHEN overall_sentiment= 'Positive' THEN 1 ELSE 0 END) AS Positive_score,
+        SUM(CASE WHEN overall_sentiment= 'Negative' THEN 1 ELSE 0 END) AS Negative_score,
+        SUM(CASE WHEN overall_sentiment= 'Neutral' THEN 1 ELSE 0 END) AS Neutral_score,
+        (positivity_score/(positivity_score+negativity_score+neutrality_score) * 10) AS Avergae_score
+    FROM audios GROUP BY agent_id
+    ORDER BY Positive_score DESC""")
+    AgentDetails = [dict(r) for r in results]
+    for i in AgentDetails:
+        total_call = db.query(models.Audio).filter_by(agent_id == agent.id).count()
+        data = db.query(models.Agent).join(models.Audio).filter(agent_id == agent.id)
+        for d in data:
+            first_name = d.first_name
+            last_name = d.last_name
+            email = d.email
+
+        return {
+        "Name" : f"{first_name} {last_name}",
+        "Email": email,
+        "Total calls" : total_call,
+        "Agents performance": AgentDetails
+        }
+@app.post("/create_user", tags=['users'])
+def create_user(request:schema.User, db: Session = Depends(get_db)):
+    db_user = models.User(
+    first_name=request.first_name,
+    last_name=request.last_name,
+    email=request.email,
+    # password=request.password,
+    # company_id=request.company_id
+    )
+    # Add Agent
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
