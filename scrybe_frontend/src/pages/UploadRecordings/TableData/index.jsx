@@ -283,7 +283,7 @@ const TableData = ({ searchKeyword }) => {
                   <div>
                     {recordCheckedList.length > 0 ? (
                       <p className={styles.selectActive}>
-                        {recordCheckedList.length} Files Selected
+                        {recordCheckedList.length} File(s) Selected
                       </p>
                     ) : (
                       " Bulk Actions"
@@ -305,7 +305,7 @@ const TableData = ({ searchKeyword }) => {
                     >
                       <p>
                         {recordCheckedList.length > 0
-                          ? `${recordCheckedList.length} Files Selected`
+                          ? `${recordCheckedList.length} File(s) Selected`
                           : " Bulk Actions"}
                       </p>
                       <p onClick={handleOpen}>Delete</p>
