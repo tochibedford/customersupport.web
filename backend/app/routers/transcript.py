@@ -3,7 +3,7 @@ from typing import Union, List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 import services as _services
-from .. import Audio, Job 
+from ..  import models
 
 
 

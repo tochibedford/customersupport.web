@@ -2,6 +2,7 @@ from fastapi import Depends, FastAPI, UploadFile, File, status, HTTPException, F
 from routers.sentiment import sentiment
 from routers.transcribe import transcribe_file
 import models
+from app.routers.transcript import transcript_router
 from jwt import (
     main_login
 )
@@ -50,6 +51,7 @@ app = FastAPI(
     openapi_tags=tags_metadata,
 )
 
+app.include_router(transcript_router)
 
 @app.get("/")
 async def ping():
@@ -163,3 +165,4 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 @app.patch("/user/update/{user_id}", response_model=schema.user_update)
 def update_user(user: schema.user_update, user_id: int, db:Session=_fastapi.Depends(get_db)):
      return crud.update_user(db=db, user=user, user_id=user_id)
+
