@@ -247,14 +247,14 @@ def read_sentiment(audio_id: int, db: Session = Depends(get_db), user: models.Us
                  }
     return sentiment
 
-@app.get("/leaderboard")
-def get_agents_leaderboard(db: Session = Depends(get_db)):
-    results = db.execute("""SELECT agent_id, 
-        SUM(CASE WHEN overall_sentiment= 'Positive' THEN 1 ELSE 0 END) AS Positive_score, 
-        SUM(CASE WHEN overall_sentiment= 'Negative' THEN 1 ELSE 0 END) AS Negative_score, 
-        SUM(CASE WHEN overall_sentiment= 'Neutral' THEN 1 ELSE 0 END) AS Neutral_score,
-        (positivity_score/(positivity_score+negativity_score+neutrality_score) * 10) AS Avergae_score 
-    FROM audios GROUP BY agent_id 
-    ORDER BY Positive_score DESC""")
-    leaderboard = [dict(r) for r in results]
-    return {"Agents Leaderboard": leaderboard}
+# @app.get("/leaderboard")
+# def get_agents_leaderboard(db: Session = Depends(get_db)):
+#     results = db.execute("""SELECT agent_id, 
+#         SUM(CASE WHEN overall_sentiment= 'Positive' THEN 1 ELSE 0 END) AS Positive_score, 
+#         SUM(CASE WHEN overall_sentiment= 'Negative' THEN 1 ELSE 0 END) AS Negative_score, 
+#         SUM(CASE WHEN overall_sentiment= 'Neutral' THEN 1 ELSE 0 END) AS Neutral_score,
+#         (positivity_score/(positivity_score+negativity_score+neutrality_score) * 10) AS Avergae_score 
+#     FROM audios GROUP BY agent_id 
+#     ORDER BY Positive_score DESC""")
+#     leaderboard = [dict(r) for r in results]
+#     return {"Agents Leaderboard": leaderboard}
