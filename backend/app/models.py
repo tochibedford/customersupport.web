@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from datetime import datetime
 
-from db import Base
+from app.db import Base
 
 class Company(Base):
     __tablename__ = 'companies'

@@ -1,15 +1,14 @@
 # import all the necessary libraries for the Auth class.
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import status, HTTPException, Depends
-from crud import get_user_by_email
-from jose import jwt
+from .crud import get_user_by_email
+from jose import jwt, JWTError
 import os
-import services as _services
+import app.services as _services
 
 from dotenv import load_dotenv
 from jwt import (
-    TokenData,
-    Token
+    TokenData,Token
 )
 from sqlalchemy.orm import Session
 # load environment variables

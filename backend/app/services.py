@@ -1,4 +1,4 @@
-from db import Base, engine, SessionLocal
+from app.db import Base, engine, SessionLocal
 from sqlalchemy.orm import Session
 
 # database. 

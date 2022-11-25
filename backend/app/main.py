@@ -1,31 +1,24 @@
 
 from fastapi import Depends, FastAPI, UploadFile, File, status, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
-from routers.sentiment import sentiment
-from routers.transcribe import transcribe_file
-
-import models
-from routers.transcript import transcript_router
-=======
-from routers.score import score_count
-
-import models, json
-from auth import get_active_user
-
+from app.routers.sentiment import sentiment
+from app.routers.transcribe import transcribe_file
+from . import models
+from app.routers.transcript import transcript_router
+from app.routers.score import score_count
+import json
+from app.auth import get_active_user, get_current_user
 from jwt import (
     main_login
 )
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-
-from db import Base, engine, SessionLocal
+from app.db import Base, engine, SessionLocal
 from sqlalchemy.orm import Session
-import crud, schema
-
-from emails import send_email, verify_token
-from audio import audio_details
+from . import crud, schema
+from .emails import send_email, verify_token
+from .audio import audio_details
 from starlette.requests import Request
 import fastapi as _fastapi
-from auth import get_current_user
 
 
 # Dependency
@@ -221,7 +214,7 @@ def update_user(user: schema.user_update, user_id: int, db:Session=_fastapi.Depe
      return crud.update_user(db=db, user=user, user_id=user_id)
 
 
-=======
+
 @app.get("/new_analysis/{id}", response_model=schema.Analysis, tags=['analysis'])
 def get_sentiment_result(id: int, db: Session = Depends(get_db)):
     """

@@ -1,6 +1,7 @@
 # crud operations for the backend app
 from sqlalchemy.orm import Session
-import models, schema
+from fastapi import HTTPException
+from . import models, schema
 from random import randint
 from passlib.context import CryptContext
 
