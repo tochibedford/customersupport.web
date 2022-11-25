@@ -15,6 +15,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from db import Base, engine, SessionLocal
 from sqlalchemy.orm import Session
 import crud, schema
+from datetime import datetime
 
 from emails import send_email, verify_token
 from audio import audio_details
@@ -262,7 +263,13 @@ def read_sentiment(audio_id: int, db: Session = Depends(get_db), user: models.Us
 @app.get("/recent-recordings", response_model=list[schema.Recordings])
 def get_recent_recordings(skip: int = 0, limit: int = 5, db: Session = Depends(get_db), user: models.User = Depends(get_active_user)):
     recordings = db.query(models.Audio).filter(models.Audio.user_id == user.id).order_by(models.Audio.timestamp.desc()).offset(skip).limit(limit).all()
+    dummy = {"id":"56", "audio_path": "th.mp3", "size": 9, "duration": 3, "timestamp": datetime.now()}
+    if len(recordings) == 0:
+        return [dummy]
+
     return recordings
+
+
 
 @app.get("/leaderboard", tags=['Agent Leaderboard'])
 def get_agents_leaderboard(db: Session = Depends(get_db)):

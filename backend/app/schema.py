@@ -99,6 +99,7 @@ class Analysis(AudioBase):
     pass
 
 class Recordings(BaseModel):
+    id: int
     audio_path: str
     size: int
     duration: int
