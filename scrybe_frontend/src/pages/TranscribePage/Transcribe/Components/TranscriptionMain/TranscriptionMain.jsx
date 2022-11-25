@@ -4,6 +4,7 @@ import TranscriptionsList from "./TranscriptionsList/TranscriptionsList";
 import TranscriptionRightBar from "./TranscriptionRightBar/TranscriptionRightBar";
 
 function TranscriptionMain() {
+<<<<<<< HEAD
   // const [transcribedText, setTranscribedText] = useState("");
   // const [formattedData, setFormattedData] = useState([]);
 
@@ -83,6 +84,8 @@ function TranscriptionMain() {
   //   // setFormattedData(generateArray(transcribedText));
   // }, []);
 
+=======
+>>>>>>> 80f898e2f0564e46ceb8cd1d4b9f4e1637b77b30
   return (
     <div className={styles.TranscriptionMain}>
       <TranscriptionsList />
