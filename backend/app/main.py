@@ -2,7 +2,7 @@ from fastapi import Depends, FastAPI, UploadFile, File, status, HTTPException, F
 from routers.sentiment import sentiment
 from routers.transcribe import transcribe_file
 import models
-from app.routers.transcript import transcript_router
+from routers.transcript import transcript_router
 from jwt import (
     main_login
 )
