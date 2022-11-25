@@ -15,17 +15,17 @@ function Footer() {
       <div className={"hh"}>
         <div className={styles.footer__content}>
           <div className={styles.footer__left}>
-            <img src={logo} alt="" srcset="" />
+            <img src={logo} alt="" srcSet="" />
             <p style={{ marginTop: "1.3rem" }}>Join Our Community</p>
             <div className={styles.socials}>
               <a href="www.hng.tech">
-                <img src={ig} alt="" srcset="" />
+                <img src={ig} alt="" srcSet="" />
               </a>
               <a href="www.hng.tech">
-                <img src={fb} alt="" srcset="" />
+                <img src={fb} alt="" srcSet="" />
               </a>
               <a href="www.hng.tech">
-                <img src={twitter} alt="" srcset="" />
+                <img src={twitter} alt="" srcSet="" />
               </a>
             </div>
           </div>

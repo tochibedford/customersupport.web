@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import MainPageCss from "./Settings.module.scss";
 import PersonalInformation from "../SettingsPageSubPages/PersonalInformation/PersonalInformationSettings";
 import AccountSetting from "../SettingsPageSubPages/AccountSettings/AccountSettings";
@@ -9,6 +9,7 @@ import ChevronRight from "../assets/icons/chevron-right.svg";
 // import SideBar from "../../../components/SideBar/SideBar";
 import NavBar from "../../../components/navBar/index";
 import Footer from "../../../components/footer/index";
+import AuthContext from "../AuthContext";
 
 import { Link } from "react-router-dom";
 
@@ -36,6 +37,8 @@ const MainPage = () => {
   const [isPage, setPage] = React.useState(true);
   const [isAccountPage, setIsAccountPage] = React.useState(false);
   const [isNotificationPage, setIsNotificationPage] = React.useState(false);
+
+  const { deleteUser } = useContext(AuthContext);
 
   const [showModal, setShowModal] = React.useState(false);
 
@@ -155,7 +158,11 @@ const MainPage = () => {
                 className={MainPageCss.error}
                 onClick={() => setShowModal((prevState) => !prevState)}
               >
-                <Link to="" className={MainPageCss.errorBtn}>
+                <Link
+                  to=""
+                  className={MainPageCss.errorBtn}
+                  onClick={deleteUser}
+                >
                   Delete Account
                 </Link>
               </div>

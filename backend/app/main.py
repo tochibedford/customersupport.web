@@ -1,5 +1,5 @@
 
-from fastapi import Depends, FastAPI, UploadFile, File, status, HTTPException, Form
+from fastapi import Depends, FastAPI, UploadFile, File, status, HTTPException, Form, Request
 from routers.sentiment import sentiment
 from routers.transcribe import transcribe_file
 from routers.score import score_count
@@ -22,8 +22,10 @@ import crud, schema
 
 from emails import send_email, verify_token
 from starlette.requests import Request
+from starlette.responses import JSONResponse
 import fastapi as _fastapi
 from auth import get_current_user
+from fastapi.middleware.cors import CORSMiddleware
 
 # Dependency
 def get_db():
@@ -59,7 +61,13 @@ app = FastAPI(
     version="0.0.1",
     openapi_tags=tags_metadata,
 )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "https://scrybe.hng.tech/", "http://127.0.0.1"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def ping():
@@ -191,9 +199,11 @@ async def email_verification(request: Request, token: str, db: Session = Depends
             "data" : f"Hello {user.first_name}, your account has been successfully verified"}
 
 
-@app.patch("/user/update/{user_id}", response_model=schema.user_update)
-def update_user(user: schema.user_update, user_id: int, db:Session=_fastapi.Depends(get_db)):
-     return crud.update_user(db=db, user=user, user_id=user_id)
+@app.put("/user/update/{user_id}", response_model=schema.User)
+async def update_user(user: schema.User, user_id: int, request: Request, db:Session=_fastapi.Depends(get_db)):
+     user_id = await request.json()["data"]["id"]
+     user = await request.json()["data"]
+     return await crud.update_user(db=db, user=user, user_id=user_id)
 
 @app.get("/new_analysis/{id}", response_model=schema.Analysis, tags=['analysis'])
 def get_sentiment_result(id: int, db: Session = Depends(get_db)):

@@ -16,17 +16,17 @@ import os
 # Load all environment variables
 load_dotenv()
 
-conf = ConnectionConfig(
-    MAIL_USERNAME = os.getenv('EMAIL'),
-    MAIL_PASSWORD = os.getenv('PASS'),
-    MAIL_FROM = os.getenv('EMAIL'),
-    MAIL_PORT = 465,
-    MAIL_SERVER = 'smtp.gmail.com',
-    MAIL_STARTTLS = False,
-    USE_CREDENTIALS = True,
-    MAIL_SSL_TLS= True,
-    VALIDATE_CERTS = True
-)
+# conf = ConnectionConfig(
+#     MAIL_USERNAME = os.getenv('EMAIL') ,
+#     MAIL_PASSWORD = os.getenv('PASS') ,
+#     MAIL_FROM = os.getenv('EMAIL'),
+#     MAIL_PORT = 465,
+#     MAIL_SERVER = 'smtp.gmail.com',
+#     MAIL_STARTTLS = False,
+#     USE_CREDENTIALS = True,
+#     MAIL_SSL_TLS= True,
+#     VALIDATE_CERTS = True
+# )
 
 async def send_email(email: List, instance: User):
     token_data = {

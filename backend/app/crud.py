@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 import models, schema
 from random import randint
 from passlib.context import CryptContext
+from starlette.requests import Request
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -38,7 +39,7 @@ def create_user(db: Session, user: schema.User):
     db.refresh(db_user)
     return db_user
 
-def update_user(db: Session, user: schema.user_update, user_id: int):
+def update_user(db: Session, user: schema.User, user_id: int):
     # Getting the current user
     db_user = get_user(
         db = db,
@@ -46,6 +47,7 @@ def update_user(db: Session, user: schema.user_update, user_id: int):
         )
     if not db_user:
         raise HTTPException(status_code=404, detail="user not found")
+    
     user_data = user.dict(exclude_unset=True)
     for key, value in user_data.items():
             setattr(db_user, key, value)
