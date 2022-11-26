@@ -1,3 +1,5 @@
+import requests
+import utils
 from fastapi import APIRouter, Depends
 from typing import Union, List
 from fastapi import APIRouter, Depends
@@ -33,6 +35,37 @@ transcript_router = APIRouter(
 )
 
 
+def transcribe_file(filename):
+    # Create header with authorization along with content-type
+   audio_to_word = get_transcript(filename)
+   return audio_to_word 
+    
+    
+    
+def get_transcript(filename):
+    header = {
+        'authorization': os.getenv("ASSEMBLY_KEY"),
+        'content-type': 'application/json'
+    }
+    upload_url = utils.upload_file(filename, header)
+     # Request a transcription
+    transcript_response = utils.request_transcript(upload_url, header)
+
+    # Create a polling endpoint that will let us check when the transcription is complete
+    polling_endpoint = utils.make_polling_endpoint(transcript_response)
+    # Wait until the transcription is complete
+    utils.wait_for_completion(polling_endpoint, header)
+
+    # Request the paragraphs of the transcript
+    paragraphs = utils.get_paragraphs(polling_endpoint, header)
+
+    # Save and print transcript
+    new_paragraph = ""
+    for para in paragraphs:
+        new_paragraph += para['text'] + " "
+
+
+        
 # """ Please Note that these endpoints are subject to change as the query would be better suited to retrieve transcripts from the transcript table by transcript_id and
 #     not Audio by audio_id.
 #     If the transcript table is available, the code will be refractored to implement changes and queries to the transcript table """
@@ -48,7 +81,7 @@ def view_transcript(job_id: Union[int, str], db: Session = Depends(_services.get
 
 
 #ENDPOINT TO GET ALL TRANSCRIPTS AS A LIST
-@transcript_router.get("/", response_model=List[schema.Audio], description="Retrieve all Transcripts")
+@transcript_router.get("/view_transcripts", response_model=List[schema.Audio], description="Retrieve all Transcripts")
 def get_transcripts(db: Session = Depends(_services.get_session), limit : int = 0, skip: int = 0, ):
     transcripts = db.query(models.Audio).filter(models.Audio.transcript).limit(limit).offset(skip).all()
     return transcripts
