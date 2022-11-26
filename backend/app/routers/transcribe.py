@@ -1,5 +1,6 @@
 import requests
 import utils
+import auth
 from fastapi import APIRouter, Depends
 from typing import Union, List
 from fastapi import APIRouter, Depends
@@ -16,33 +17,6 @@ import os
 
 load_dotenv()
 
-def transcribe_file(filename):
-    with open(filename, "rb") as file:
-        # Load audio file
-        mp3bytes = BytesIO(file.read())
-        mp3 = base64.b64encode(mp3bytes.getvalue()).decode("ISO-8859-1")
-        model_payload = {"mp3BytesString": mp3}
-        out = banana.run(api_key, model_key, model_payload)
-        return out['modelOutputs'][0]['text']
-
-
-
-transcript_router = APIRouter(
-    prefix="/transcription",
-    tags=["TRANSCRIPTION"]
-)
-
-
-def transcribe_file(filename):
-    # Create header with authorization along with content-type
-   audio_to_word = get_transcript(filename)
-
-    # Create header with authorization along with content-type
-   audio_to_word = get_transcript(filename)
-   return audio_to_word 
-    
-    
-    
 def get_transcript(filename):
     header = {
         'authorization': os.getenv("ASSEMBLY_KEY"),
@@ -66,6 +40,25 @@ def get_transcript(filename):
         new_paragraph += para['text'] + " "
 
     return new_paragraph
+
+
+
+transcript_router = APIRouter(
+    prefix="/transcription",
+    tags=["TRANSCRIPTION"]
+)
+
+
+def transcribe_file(filename):
+    # Create header with authorization along with content-type
+   audio_to_word = get_transcript(filename)
+    # Create header with authorization along with content-type
+   audio_to_word = get_transcript(filename)
+   return audio_to_word 
+    
+    
+    
+
         
 # """ Please Note that these endpoints are subject to change as the query would be better suited to retrieve transcripts from the transcript table by transcript_id and
 #     not Audio by audio_id.
@@ -73,7 +66,7 @@ def get_transcript(filename):
 
 # ENDPOINT TO GET A PARTICULAR TRANSCRIPT USING THE AUDIO ID
 @transcript_router.get("/{job_id}", description="Retrieving transcript by audio ID")
-def view_transcript(job_id: Union[int, str], db: Session = Depends(_services.get_session)):
+def view_transcript(job_id: Union[int, str], db: Session = Depends(_services.get_session), current_user: Union[str , int] = Depends(auth.get_current_user)):
     Job = db.query(models.Job).filter(models.Job.id == job_id).first()
     job_audio_id = Job.audio_id
     transcript_audio = db.query(models.Audio).filter(models.Audio.id == job_audio_id).first()
@@ -83,7 +76,7 @@ def view_transcript(job_id: Union[int, str], db: Session = Depends(_services.get
 
 #ENDPOINT TO GET ALL TRANSCRIPTS AS A LIST
 @transcript_router.get("/view_transcripts", response_model=List[schema.Audio], description="Retrieve all Transcripts")
-def get_transcripts(db: Session = Depends(_services.get_session), limit : int = 0, skip: int = 0, ):
+def get_transcripts(db: Session = Depends(_services.get_session), current_user: Union[str , int] = Depends(auth.get_current_user), limit : int = 0, skip: int = 0, ):
     transcripts = db.query(models.Audio).filter(models.Audio.transcript).limit(limit).offset(skip).all()
     return transcripts
 

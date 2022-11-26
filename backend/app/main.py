@@ -221,8 +221,7 @@ def update_user(user: schema.user_update, user_id: int, db:Session=_fastapi.Depe
 
 
 
-@app.get("/new_analysis/{id}", response_model=schema.Analysis, tags=['analysis'])
-=======
+
 @app.get('/history', summary = "get user history", response_model=Page[schema.History])
 async def get_history(user: models.User = Depends(get_current_user), db: Session = Depends(get_db), params: Params = Depends()):
     user_history = paginate(crud.get_history_by_user_id(db, user.id), params)
@@ -235,7 +234,6 @@ async def get_history(user: models.User = Depends(get_current_user), db: Session
 
 
 @app.get("/new_analysis/{id}", summary = "get result of a sentiment analysis", response_model=schema.Analysis, tags=['analysis'])
-
 def get_sentiment_result(id: int, db: Session = Depends(get_db)):
     """
     Get single analysis
