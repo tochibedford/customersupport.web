@@ -1,16 +1,11 @@
-import requests
 import utils
 import auth
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, status
 from typing import Union, List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 import services as _services
 import models, schema
-from io import BytesIO
-import base64
-import banana_dev as banana
-
 from . import utility as utils
 from dotenv import load_dotenv
 import os
@@ -68,6 +63,9 @@ def transcribe_file(filename):
 @transcript_router.get("/{job_id}", description="Retrieving transcript by audio ID")
 def view_transcript(job_id: Union[int, str], db: Session = Depends(_services.get_session), current_user: Union[str , int] = Depends(auth.get_current_user)):
     Job = db.query(models.Job).filter(models.Job.id == job_id).first()
+    if not Job:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Job with id: {job_id} was not found")
     job_audio_id = Job.audio_id
     transcript_audio = db.query(models.Audio).filter(models.Audio.id == job_audio_id).first()
     transcript_text = transcript_audio.transcript
