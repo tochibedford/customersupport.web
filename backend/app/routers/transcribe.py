@@ -9,14 +9,12 @@ import models, schema
 from io import BytesIO
 import base64
 import banana_dev as banana
+
+from . import utility as utils
 from dotenv import load_dotenv
 import os
 
-# Load all environment variables
 load_dotenv()
-
-api_key = os.getenv("API_KEY")
-model_key = os.getenv("MODEL_KEY")
 
 def transcribe_file(filename):
     with open(filename, "rb") as file:
@@ -36,6 +34,9 @@ transcript_router = APIRouter(
 
 
 def transcribe_file(filename):
+    # Create header with authorization along with content-type
+   audio_to_word = get_transcript(filename)
+
     # Create header with authorization along with content-type
    audio_to_word = get_transcript(filename)
    return audio_to_word 
@@ -85,3 +86,6 @@ def view_transcript(job_id: Union[int, str], db: Session = Depends(_services.get
 def get_transcripts(db: Session = Depends(_services.get_session), limit : int = 0, skip: int = 0, ):
     transcripts = db.query(models.Audio).filter(models.Audio.transcript).limit(limit).offset(skip).all()
     return transcripts
+
+    
+
