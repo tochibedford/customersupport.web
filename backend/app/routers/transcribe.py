@@ -64,7 +64,7 @@ def get_transcript(filename):
     for para in paragraphs:
         new_paragraph += para['text'] + " "
 
-
+    return new_paragraph
         
 # """ Please Note that these endpoints are subject to change as the query would be better suited to retrieve transcripts from the transcript table by transcript_id and
 #     not Audio by audio_id.
