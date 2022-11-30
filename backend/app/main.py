@@ -329,7 +329,7 @@ async def my_profile (db: Session = Depends(get_db), user: models.User = Depends
 @app.get("/AgentDetails", summary = "get agent performance report", tags=['Agent Performance Report'])
 def get_agent_performance(db: Session = Depends(get_db),user: models.User = Depends(get_active_user)):
     data_result = db.execute('''SELECT COUNT (first_name) AS "Total calls",
-    first_name || '   ' || last_name AS Name,  
+    first_name || ' ' || last_name AS Name,  
     SUM(CASE WHEN overall_sentiment= 'Positive' THEN 1 ELSE 0 END) AS Positive,
     SUM(CASE WHEN overall_sentiment= 'Negative' THEN 1 ELSE 0 END) AS Negative,
     SUM(CASE WHEN overall_sentiment= 'Neutral' THEN 1 ELSE 0 END) AS Neutral,
