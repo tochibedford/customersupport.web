@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PersonalInfo from "./PersonalInformationSettings.module.scss";
 import RedirectNav from "../../Components/SettingsPageRedirectNav/SettingsPageRedirectNav";
 import ProfilePic from "../../assets/images/Pic.png";
@@ -6,12 +6,50 @@ import BlueEditPen from "../../assets/icons/blue-pencil.png";
 import BlackEditPen from "../../assets/icons/edit.svg";
 import { Link } from "react-router-dom";
 import Footer from "../../../../components/footer/index";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const PersonalInformation = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [email, setEmail] = useState("");
+  const [user, setUser] = useState({});
+
+  const onSubmit = (data) => {
+    console.log(data);
+    // event.preventDefault();
     window.scrollTo(0, 0);
   };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const getData = async () => {
+    const data = await axios.get("https://heedapi.herokuapp.com/users/1");
+    setUser(data.data);
+    console.log(data.data);
+  };
+
+  getData();
+  // const updateData = Axios.patch(
+  //   `https://heedapi.herokuapp.com/user/update/1`,
+  //   {
+  //     firstname: firstName,
+  //     lastName: lastName,
+  //     email: email,
+  //   }
+  // );
+  // const updateData = Axios.patch(
+  //   `https://heedapi.herokuapp.com/user/update/1`,
+  //   {
+  //     firstname: firstName,
+  //     lastName: lastName,
+  //     email: email,
+  //   }
+  // );
 
   return (
     <>
@@ -33,28 +71,46 @@ const PersonalInformation = () => {
           </div>
           <div className={PersonalInfo.PersonalInfo_form}>
             <form
-              action="
+              action="https://heedapi.herokuapp.com/users
 							  "
+              method="post"
+              onSubmit={handleSubmit(onSubmit)}
             >
               <div className={PersonalInfo.row}>
                 <div className={PersonalInfo.formGroup}>
-                  <label htmlFor="">First name</label>
-                  <input type="text" placeholder="Doe" />
+                  <label htmlFor="firstName">First name</label>
+                  <input
+                    type="text"
+                    placeholder="Doe"
+                    {...register("first_name")}
+                  />
                 </div>
                 <div className={PersonalInfo.formGroup}>
                   <label htmlFor="">Last name</label>
-                  <input type="text" placeholder="John" />
+                  <input
+                    type="text"
+                    placeholder="John"
+                    {...register("last_name")}
+                  />
                 </div>
               </div>
               <div className={PersonalInfo.formGroup}>
                 <label htmlFor="">Phone number</label>
-                <input type="tel" placeholder="+23470984995736" />
+                <input
+                  type="tel"
+                  placeholder="+23470984995736"
+                  {...register("phone")}
+                />
               </div>
               <div
                 className={`${PersonalInfo.formGroup} ${PersonalInfo.editInput}`}
               >
                 <label htmlFor="">Email address</label>
-                <input type="email" placeholder="test@email.com" />
+                <input
+                  type="email"
+                  placeholder="test@email.com"
+                  {...register("email")}
+                />
                 <div className={PersonalInfo.verified}>
                   {/* <p className={PersonalInfo.message}>{isVerified ? "Verified" : "Unverified"}</p> */}
                 </div>
@@ -67,7 +123,7 @@ const PersonalInformation = () => {
                 </Link>
               </div>
               <div className={`${PersonalInfo.formSubmit} formSubmit`}>
-                <button onClick={handleSubmit}>Save changes</button>
+                <button>Save changes</button>
                 <Link to="">Verify email</Link>
               </div>
             </form>
