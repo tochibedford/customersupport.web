@@ -34,22 +34,6 @@ const PersonalInformation = () => {
   };
 
   getData();
-  // const updateData = Axios.patch(
-  //   `https://heedapi.herokuapp.com/user/update/1`,
-  //   {
-  //     firstname: firstName,
-  //     lastName: lastName,
-  //     email: email,
-  //   }
-  // );
-  // const updateData = Axios.patch(
-  //   `https://heedapi.herokuapp.com/user/update/1`,
-  //   {
-  //     firstname: firstName,
-  //     lastName: lastName,
-  //     email: email,
-  //   }
-  // );
 
   return (
     <>
