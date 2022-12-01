@@ -481,22 +481,33 @@ function Leaderboard() {
     </div>
   );
 }
+const formatter = Intl.NumberFormat("en", {
+  notation: "compact",
+});
 
-function LeaderBoardDisplay({ person }) {
+function LeaderBoardDisplay({
+  person: {
+    Profile_content,
+    Avergae_score,
+    Positive_score,
+    Neutral_score,
+    Negative_score,
+  },
+}) {
   return (
     <div className={styles.Profile1}>
       <div className={styles.Profile_img}>
         <img src={Profile1} className="" alt="profile1" />
       </div>
-      <div className={styles.Profile_content}>
+      <div className={Profile_content}>
         <h2>Awesome Lily</h2>
-        <h1>{parseFloat(person.Avergae_score.toFixed(1))}</h1>
+        <h1>{parseFloat(Avergae_score.toFixed(1))}</h1>
         <p>Calls Received</p>
         <div className={styles.Like_container}>
           <div className={styles.Like_content1}>
             <div className={styles.Like_icon_content}>
               <img src={GreenLike} className="" alt="profile1" />
-              <p>{person.Positive_score}</p>
+              <p>{Positive_score}</p>
             </div>
             <p className={styles.Like_text}> POS.CALLS</p>
           </div>
@@ -504,7 +515,7 @@ function LeaderBoardDisplay({ person }) {
           <div className={styles.Like_content1}>
             <div className={styles.Like_icon_content}>
               <img src={BlackLike} className="" alt="profile1" />
-              <p>{person.Neutral_score}</p>
+              <p>{Neutral_score}</p>
             </div>
             <p className={styles.Like_text}> NEU.CALLS</p>
           </div>
@@ -512,7 +523,7 @@ function LeaderBoardDisplay({ person }) {
           <div className={styles.Like_content1}>
             <div className={styles.Like_icon_content}>
               <img src={GreenLike} className="" alt="profile1" />
-              <p>{person.Negative_score}</p>
+              <p>{Negative_score}</p>
             </div>
             <p className={styles.Like_text}>NEG.CALLS</p>
           </div>
