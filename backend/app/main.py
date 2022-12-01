@@ -325,7 +325,7 @@ async def my_profile (db: Session = Depends(get_db), user: models.User = Depends
 
 
 
-@app.get("/agents", summary = "create new agent", tags=['agents'])
+@app.post("/agents", summary = "create new agent", tags=['agents'])
 async def create_agent(agent: schema.AgentCreate, db: Session = Depends(get_db), user: models.User = Depends(get_active_user)):
     company_id = user.company_id
     return crud.create_agent(db, agent, company_id)
