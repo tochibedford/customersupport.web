@@ -490,7 +490,7 @@ function LeaderBoardDisplay({ person }) {
       </div>
       <div className={styles.Profile_content}>
         <h2>Awesome Lily</h2>
-        <h1>{person.Avergae_score}</h1>
+        <h1>{parseFloat(person.Avergae_score.toFixed(1))}</h1>
         <p>Calls Received</p>
         <div className={styles.Like_container}>
           <div className={styles.Like_content1}>
